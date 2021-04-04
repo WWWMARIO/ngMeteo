@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SplashComponent } from './splash.component';
+import { WelcomeComponent } from './welcome.component';
 
-describe('SplashComponent', () => {
-  let component: SplashComponent;
-  let fixture: ComponentFixture<SplashComponent>;
+describe('WelcomeComponent', () => {
+  let component: WelcomeComponent;
+  let fixture: ComponentFixture<WelcomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SplashComponent ]
+      declarations: [ WelcomeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SplashComponent);
+    fixture = TestBed.createComponent(WelcomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
