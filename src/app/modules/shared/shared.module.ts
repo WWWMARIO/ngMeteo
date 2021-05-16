@@ -21,6 +21,8 @@ import { MatTableModule } from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
+import { GetSensorTypePipe } from './pipes/get-sensor-type.pipe';
+import { GetSensorNamePipe } from './pipes/get-sensor-name.pipe';
 
 
 
@@ -30,7 +32,7 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
 
 @NgModule({
   declarations: [/* OrdersListComponent, FilterMenuByCategoryPipe */
-    ConfirmDeleteModalComponent
+    ConfirmDeleteModalComponent, GetSensorTypePipe, GetSensorNamePipe
   ],
   imports: [
     CommonModule,
@@ -51,6 +53,7 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
     MatTableModule
 
 
+
   ],
   exports: [
     CommonModule,
@@ -68,7 +71,9 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
     MatExpansionModule,
     MatCardModule,
     MatChipsModule,
-    MatTableModule
+    MatTableModule,
+    GetSensorTypePipe,
+    GetSensorNamePipe
 
 
   ],

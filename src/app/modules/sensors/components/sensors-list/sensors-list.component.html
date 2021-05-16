@@ -19,15 +19,15 @@
   </ng-container>
 
   <ng-container matColumnDef="sensorTypeId">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>sensorTypeId</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sensor type</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ sensor.sensorTypeId}}
+      {{ sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)}}
     </td>
   </ng-container>
   <ng-container matColumnDef="stationId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>stationId</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ sensor.stationId}}
+      {{ sensor.stationId | getSensorName: (sensors$ | async)}}
     </td>
   </ng-container>
 
