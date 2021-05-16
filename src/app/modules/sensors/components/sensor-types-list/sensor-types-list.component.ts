@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from "@angular/fire/firestore";
 import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { ConfirmDeleteModalComponent } from "src/app/modules/shared/components/confirm-delete-modal/confirm-delete-modal.component";
+import { ApiSensorsService } from "../../api-sensors.service";
 import { EditSensorTypeModalComponent } from "../edit-sensor-type-modal/edit-sensor-type-modal.component";
 
 @Component({
@@ -17,11 +17,12 @@ export class SensorTypesListComponent implements OnInit {
   sensorTypes$: Observable<any[]>;
 
   constructor(
-    private firestore: AngularFirestore,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private apiSensorsService: ApiSensorsService) { }
 
   ngOnInit(): void {
-    this.sensorTypes$ = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
+    // this.sensorTypes$ = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
+    this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
   }
 
 
@@ -51,7 +52,8 @@ export class SensorTypesListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
       if (confirmDelete) {
-        this.firestore.collection('sensorTypes').doc(sensorType.id).delete();
+        // this.firestore.collection('sensorTypes').doc(sensorType.id).delete();
+        this.apiSensorsService.deleteSensorType(sensorType.id);
       }
     });
   }

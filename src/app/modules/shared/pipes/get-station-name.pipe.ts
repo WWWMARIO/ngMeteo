@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'getSensorName'
+  name: 'getStationName'
 })
-export class GetSensorNamePipe implements PipeTransform {
+export class GetStationNamePipe implements PipeTransform {
 
   transform(stationId: string, stations: any[]): unknown {
     if (!stationId) {

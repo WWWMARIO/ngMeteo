@@ -1,0 +1,81 @@
+<h1>Sensor</h1>
+<form [formGroup]="sensorForm" class="flex-column">
+  <mat-form-field>
+    <mat-label>lowerLimit</mat-label>
+    <input
+      type="number"
+      matInput
+      formControlName="lowerLimit"
+      placeholder="lowerLimit"
+    />
+    <mat-error *ngIf="sensorForm.controls.lowerLimit.hasError('required')">
+      Please enter lower limit
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>upperLimit</mat-label>
+    <input
+      type="number"
+      matInput
+      formControlName="upperLimit"
+      placeholder="upperLimit"
+    />
+    <mat-error *ngIf="sensorForm.controls.upperLimit.hasError('required')">
+      Please enter upper limit
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>description</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="description"
+      placeholder="description"
+    />
+    <mat-error *ngIf="sensorForm.controls.description.hasError('required')">
+      Please enter description
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Station</mat-label>
+    <mat-select formControlName="stationId">
+      <mat-option
+        *ngFor="let station of meteoStations$ | async"
+        [value]="station.id"
+      >
+        {{ station.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Sensor type</mat-label>
+    <mat-select formControlName="sensorTypeId">
+      <mat-option
+        *ngFor="let sensorType of sensorTypes$ | async"
+        [value]="sensorType.id"
+      >
+        {{ sensorType.type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button
+    *ngIf="data"
+    mat-raised-button
+    (click)="updateSensor()"
+    color="primary"
+    [disabled]="loading"
+  >
+    Update sensor type
+  </button>
+  <button
+    *ngIf="!data"
+    mat-raised-button
+    (click)="newSensor()"
+    color="primary"
+    [disabled]="loading"
+  >
+    Create new sensor
+  </button>
+</form>

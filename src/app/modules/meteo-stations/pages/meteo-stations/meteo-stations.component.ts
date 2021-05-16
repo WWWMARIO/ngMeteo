@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from "@angular/material/dialog";
 import { EditMeteoStationModalComponent } from "../../components/edit-meteo-station-modal/edit-meteo-station-modal.component";
 import { ConfirmDeleteModalComponent } from "src/app/modules/shared/components/confirm-delete-modal/confirm-delete-modal.component";
+import { ApiStationsService } from "../../api-stations.service";
 
 export interface MeteoStation {
   id: string;
@@ -27,11 +28,11 @@ export class MeteoStationsComponent implements OnInit {
   meteoStations$: Observable<any[]>;
 
   constructor(
-    private firestore: AngularFirestore,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog,
+    private apiStationsService: ApiStationsService) { }
 
   ngOnInit(): void {
-    this.meteoStations$ = this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
+    this.meteoStations$ = this.apiStationsService.getMeteoStations();// this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
   }
 
   onNew() {
@@ -60,7 +61,8 @@ export class MeteoStationsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
       if (confirmDelete) {
-        this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
+        // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
+        this.apiStationsService.deleteMeteoStations(meteoStation.id);
       }
     });
   }

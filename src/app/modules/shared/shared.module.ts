@@ -22,7 +22,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 import { GetSensorTypePipe } from './pipes/get-sensor-type.pipe';
-import { GetSensorNamePipe } from './pipes/get-sensor-name.pipe';
+import { GetStationNamePipe } from './pipes/get-station-name.pipe';
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 
@@ -32,7 +34,7 @@ import { GetSensorNamePipe } from './pipes/get-sensor-name.pipe';
 
 @NgModule({
   declarations: [/* OrdersListComponent, FilterMenuByCategoryPipe */
-    ConfirmDeleteModalComponent, GetSensorTypePipe, GetSensorNamePipe
+    ConfirmDeleteModalComponent, GetSensorTypePipe, GetStationNamePipe
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { GetSensorNamePipe } from './pipes/get-sensor-name.pipe';
     MatExpansionModule,
     MatCardModule,
     MatChipsModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule
 
 
 
@@ -73,7 +76,8 @@ import { GetSensorNamePipe } from './pipes/get-sensor-name.pipe';
     MatChipsModule,
     MatTableModule,
     GetSensorTypePipe,
-    GetSensorNamePipe
+    GetStationNamePipe,
+    MatSelectModule
 
 
   ],

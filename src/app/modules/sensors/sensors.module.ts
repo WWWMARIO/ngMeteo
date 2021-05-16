@@ -7,6 +7,7 @@ import { SensorTypesListComponent } from './components/sensor-types-list/sensor-
 import { SharedModule } from "../shared/shared.module";
 import { EditSensorTypeModalComponent } from './components/edit-sensor-type-modal/edit-sensor-type-modal.component';
 import { SensorsListComponent } from './components/sensors-list/sensors-list.component';
+import { EditSensorModalComponent } from './components/edit-sensor-modal/edit-sensor-modal.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SensorsListComponent } from './components/sensors-list/sensors-list.com
     SensorsComponent,
     SensorTypesListComponent,
     EditSensorTypeModalComponent,
-    SensorsListComponent
+    SensorsListComponent,
+    EditSensorModalComponent
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from "@angular/material/dialog";
+import { EditSensorModalComponent } from "../../components/edit-sensor-modal/edit-sensor-modal.component";
 
 @Component({
   selector: 'app-sensors',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SensorsComponent implements OnInit {
 
-  constructor() { }
+  constructor( private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  onNew() {
+    const dialogRef = this.dialog.open(EditSensorModalComponent, {
+      // height: '90%',
+      width: '90%',
+    });
   }
 
 }

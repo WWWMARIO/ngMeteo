@@ -1,3 +1,18 @@
-<p>Sensors</p>
-<app-sensor-types-list></app-sensor-types-list>
+
+<div class="flex-row">
+  <h1>Sensors</h1>
+  <div style="margin-left: auto">
+    <button
+      style="margin-right: 20px; margin-top: 5px; margin-bottom: 5px"
+      (click)="onNew()"
+      color="accent"
+      mat-mini-fab
+      matTooltip="Add new meteo station"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
 <app-sensors-list></app-sensors-list>
+<app-sensor-types-list></app-sensor-types-list>
