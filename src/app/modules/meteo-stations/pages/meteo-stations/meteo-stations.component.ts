@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from "@angular/material/dialog";
 import { EditMeteoStationModalComponent } from "../../components/edit-meteo-station-modal/edit-meteo-station-modal.component";
+import { ConfirmDeleteModalComponent } from "src/app/modules/shared/components/confirm-delete-modal/confirm-delete-modal.component";
 
 export interface MeteoStation {
   id: string;
@@ -23,19 +24,19 @@ export interface MeteoStation {
 export class MeteoStationsComponent implements OnInit {
 
   panelOpenState = false;
-  meteoStations: Observable<any[]>;
+  meteoStations$: Observable<any[]>;
 
   constructor(
     private firestore: AngularFirestore,
-    private dialog: MatDialog,) { }
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.meteoStations = this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
+    this.meteoStations$ = this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
   }
 
   onNew() {
     const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
-      height: '90%',
+      // height: '90%',
       width: '90%',
     });
     /* dialogRef.afterClosed().subscribe((result) => {
@@ -47,13 +48,21 @@ export class MeteoStationsComponent implements OnInit {
   onEdit(meteoStation) {
     const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
       data:  meteoStation,
-      height: '90%',
+      // height: '90%',
       width: '90%',
     });
   }
 
   onDelete(meteoStation) {
-    this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
+    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      // height: '90%',
+      // width: '90%',
+    });
+    dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
+      if (confirmDelete) {
+        this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
+      }
+    });
   }
 
 }

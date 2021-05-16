@@ -1,0 +1,38 @@
+<mat-card style="margin: 20px"
+  ><!-- <mat-form-field class="example-chip-list"> -->
+    <mat-label>Sensor types</mat-label>
+    <!-- <mat-chip-list #chipList >
+      <mat-chip
+        *ngFor="let category of sensorTypes$ | async"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(category)"
+        (click)="editCategory(category)"
+      >
+        {{ category.name }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="New sensor type..."
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list> -->
+    <mat-chip-list>
+      <mat-chip color="accent" selected (click)="onNew()"><mat-icon>add</mat-icon></mat-chip>
+      <mat-chip
+      *ngFor="let sensorType of sensorTypes$ | async"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="onRemove(sensorType)"
+      (click)="editSensorType(sensorType)"
+    >
+      {{ sensorType.type }}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    </mat-chip-list>
+
+  <!-- </mat-form-field> -->
+</mat-card>

@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import firebase from "firebase/app";
 
 @Component({
   selector: 'app-edit-meteo-station-modal',
@@ -15,7 +17,9 @@ export class EditMeteoStationModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
     private formBuilder: FormBuilder,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private snackBar: MatSnackBar,
+    private dialogRef: MatDialogRef<EditMeteoStationModalComponent>,
   ) {}
 
   ngOnInit(): void {
@@ -39,23 +43,54 @@ export class EditMeteoStationModalComponent implements OnInit {
     }
   }
 
-  updateStation() {
+  async updateStation() {
     if (this.meteoStationForm.valid) {
       console.log(this.meteoStationForm.value);
+      const updatedMeteoStation = {
+        name: this.meteoStationForm.value.name,
+        description: this.meteoStationForm.value.description,
+        imageUrl: this.meteoStationForm.value.imageUrl,
+        geoLocation: new firebase.firestore.GeoPoint(this.meteoStationForm.value.longitude, this.meteoStationForm.value.latitude)
+      };
+      try {
+        this.loading = true;
+        await this.firestore.collection('meteoStation').doc(this.data.id).update(updatedMeteoStation);
+        this.dialogRef.close();
+      } catch (err) {
+        this.snackBar.open('Error creating new meteo station', '', {
+          duration: 2000
+        });
+      }
+    } else {
+      this.snackBar.open('Please input valid meteo station information', '', {
+        duration: 2000
+      });
     }
   }
 
-  newStation() {
+  async newStation() {
     if (this.meteoStationForm.valid) {
       console.log(this.meteoStationForm.value);
       const newMeteoStation = {
         name: this.meteoStationForm.value.name,
         description: this.meteoStationForm.value.description,
         imageUrl: this.meteoStationForm.value.imageUrl,
-        geoLocation: {
-          longitude: this.meteoStationForm.value.longitude,
-          latitude: this.meteoStationForm.value.latitude},
+        geoLocation: new firebase.firestore.GeoPoint(this.meteoStationForm.value.longitude, this.meteoStationForm.value.latitude)
       };
+      try {
+        this.loading = true;
+        await this.firestore.collection('meteoStation').add(newMeteoStation);
+        this.dialogRef.close();
+      } catch (err) {
+        this.snackBar.open('Error creating new meteo station', '', {
+          duration: 2000
+        });
+      }
+
+    } else {
+      this.snackBar.open('Please input valid meteo station information', '', {
+        duration: 2000
+      });
     }
   }
 }

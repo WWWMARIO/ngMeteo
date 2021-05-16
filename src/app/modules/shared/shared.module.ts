@@ -11,10 +11,16 @@ import {MatFormFieldModule } from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTableModule } from '@angular/material/table';
+
+
+
 
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/confirm-delete-modal.component';
 
 
 
@@ -23,7 +29,9 @@ import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
-  declarations: [/* OrdersListComponent, FilterMenuByCategoryPipe */],
+  declarations: [/* OrdersListComponent, FilterMenuByCategoryPipe */
+    ConfirmDeleteModalComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -38,7 +46,9 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogModule,
     MatInputModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatChipsModule,
+    MatTableModule
 
 
   ],
@@ -56,7 +66,9 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogModule,
     MatInputModule,
     MatExpansionModule,
-    MatCardModule
+    MatCardModule,
+    MatChipsModule,
+    MatTableModule
 
 
   ],
