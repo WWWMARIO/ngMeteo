@@ -1,0 +1,82 @@
+<!-- <p>meteo-station works!</p>
+ --><!-- <ul>
+  <li class="text" *ngFor="let meteoStation of meteoStations | async">
+    {{meteoStation.name}}
+  </li>
+</ul> -->
+<div class="flex-row">
+  <h1>Meteo stations</h1>
+  <div style="margin-left: auto">
+    <button
+      style="margin-right: 20px; margin-top: 5px; margin-bottom: 5px"
+      (click)="onNew()"
+      color="accent"
+      mat-mini-fab
+      matTooltip="Add new meteo station"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div style="margin-left: 20px; margin-right: 20px">
+  <mat-accordion>
+    <mat-expansion-panel
+      hideToggle
+      *ngFor="let meteoStation of meteoStations | async"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ meteoStation.name }}
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <div class="flex-row">
+        <img [src]="meteoStation.imageUrl" style="height: 150px" />
+        <div class="flex-column">
+          <div>
+            Latitude:
+            <span>{{ meteoStation.geoLocation.latitude }} &#176;</span>
+          </div>
+          <div>
+            Longitude:
+            <span>{{ meteoStation.geoLocation.longitude }} &#176;</span>
+          </div>
+          <div>
+            Description: <span>{{ meteoStation.description }}</span>
+          </div>
+        </div>
+        <div>
+          <button
+            mat-raised-button
+            (click)="onEdit(meteoStation)"
+            color="primary"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-raised-button
+            (click)="onDelete(meteoStation)"
+            color="primary"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-expansion-panel>
+    <!--  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel> -->
+  </mat-accordion>
+</div>

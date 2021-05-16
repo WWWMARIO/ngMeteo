@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "veleri-meteo-station": {
+      "hosting": {
+        "ngMeteo": [
+          "veleri-meteo-station"
+        ]
+      }
+    }
+  }
+}

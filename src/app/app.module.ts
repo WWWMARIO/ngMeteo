@@ -6,29 +6,28 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellComponent } from './core/shell/shell.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
+import { AngularFireModule } from "@angular/fire";
+import { environment } from "src/environments/environment";
+import { SharedModule } from "./modules/shared/shared.module";
+import { LoginComponent } from './core/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShellComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
+
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule
+    SharedModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { map, shareReplay } from "rxjs/operators";
 
@@ -16,9 +18,17 @@ export class ShellComponent implements OnInit {
     shareReplay()
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private auth: AngularFireAuth,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.auth.signOut();
+    this.router.navigate(['/welcome'])
   }
 
 }
