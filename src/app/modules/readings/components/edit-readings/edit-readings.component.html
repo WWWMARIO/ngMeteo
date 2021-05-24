@@ -1,0 +1,85 @@
+<h1>Reading</h1>
+<form [formGroup]="readingForm" class="flex-column">
+  <mat-form-field>
+    <mat-label>value</mat-label>
+    <input
+      type="number"
+      matInput
+      formControlName="value"
+      placeholder="lowvalueerLimit"
+    />
+    <mat-error *ngIf="readingForm.controls.value.hasError('required')">
+      Please entervalue
+    </mat-error>
+  </mat-form-field>
+  <!-- <mat-form-field>
+    <mat-label>upperLimit</mat-label>
+    <input
+      type="number"
+      matInput
+      formControlName="upperLimit"
+      placeholder="upperLimit"
+    />
+    <mat-error *ngIf="sensorForm.controls.upperLimit.hasError('required')">
+      Please enter upper limit
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>description</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="description"
+      placeholder="description"
+    />
+    <mat-error *ngIf="sensorForm.controls.description.hasError('required')">
+      Please enter description
+    </mat-error>
+  </mat-form-field> -->
+  <mat-form-field>
+    <mat-label>Sensor</mat-label>
+    <mat-select formControlName="sensorId">
+      <mat-option
+        *ngFor="let sensor of sensors$ | async"
+        [value]="sensor.id"
+      >
+        Min: {{ sensor.lowerLimit }}
+        / Max: {{sensor.upperLimit}}
+        / Description: {{sensor.description}}
+        /  Sensor type: {{ sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)}}
+        / Station {{ sensor.stationId | getStationName: (stations$ | async)}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <mat-form-field>
+    <mat-label>Sensor type</mat-label>
+    <mat-select formControlName="sensorTypeId">
+      <mat-option
+        *ngFor="let sensorType of sensorTypes$ | async"
+        [value]="sensorType.id"
+      >
+        {{ sensorType.type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+  <button
+    *ngIf="data"
+    mat-raised-button
+    (click)="updateReading()"
+    color="primary"
+    [disabled]="loading"
+  >
+    Update reading
+  </button>
+  <button
+    *ngIf="!data"
+    mat-raised-button
+    (click)="newReading()"
+    color="primary"
+    [disabled]="loading"
+  >
+    Create new reading
+  </button>
+</form>

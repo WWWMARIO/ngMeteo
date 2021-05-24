@@ -46,7 +46,6 @@ export class SensorsListComponent implements OnInit {
     //  = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
     this.sensorsSub = this.apiSensorsService.getSensors().subscribe((response)=>{
-      console.log(response)
       this.dataSource.data = response;
       this.dataSource.sort = this.sort;
     });
@@ -71,6 +70,10 @@ export class SensorsListComponent implements OnInit {
         this.apiSensorsService.deleteSensor(sensor.id);
       }
     });
+  }
+
+  viewReadings(sensor) {
+    console.log(sensor)
   }
 
   ngOnDestroy() {

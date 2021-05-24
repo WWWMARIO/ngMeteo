@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -24,6 +25,8 @@ import { ConfirmDeleteModalComponent } from './components/confirm-delete-modal/c
 import { GetSensorTypePipe } from './pipes/get-sensor-type.pipe';
 import { GetStationNamePipe } from './pipes/get-station-name.pipe';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 
@@ -53,7 +56,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     MatChipsModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatTooltipModule
 
 
 
@@ -77,7 +82,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     GetSensorTypePipe,
     GetStationNamePipe,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatTooltipModule
 
 
   ],

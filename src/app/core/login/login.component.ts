@@ -44,19 +44,6 @@ export class LoginComponent implements OnInit {
         duration: 3000
       });
     }
-
-    /* this.loginService.logIn(this.logInForm.value).subscribe(resp => {
-      this.dialogRef.close();
-      this.router.navigate(['/menu']);
-
-    }, err => {
-      this.loading = false;
-      this.snackBar.open('Invalid username or password', '', {
-        duration: 3000
-      });
-
-    }) */
-
   }
 
   onCancel(): void {
