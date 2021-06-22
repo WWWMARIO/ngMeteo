@@ -39,7 +39,7 @@
       color="primary"
       [disabled]="loading"
     >
-      Update senor type
+      Update sensor type
     </button>
     <button
       *ngIf="!data"
@@ -47,6 +47,7 @@
       (click)="newSensorType()"
       color="primary"
       [disabled]="loading"
+      type="submit"
     >
       Create new sensor type
     </button>

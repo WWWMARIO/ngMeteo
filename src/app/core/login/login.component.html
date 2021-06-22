@@ -35,10 +35,10 @@
       </mat-error>
     </mat-form-field>
     <div class="flex-row" style="width: 100%; margin-top: 50px; justify-content: space-between">
-      <button mat-raised-button (click)="onCancel()" color="primary">
+      <button type="button" mat-raised-button (click)="onCancel()" color="primary" #cancelButton>
         Cancel
       </button>
-      <button mat-raised-button (click)="onLogIn()" color="primary">
+      <button type="submit" mat-raised-button (click)="onLogIn()" color="primary" [disabled]="logInForm.invalid">
         Log in
       </button>
     </div>

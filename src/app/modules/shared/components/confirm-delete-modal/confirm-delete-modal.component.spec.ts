@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogRef } from "@angular/material/dialog";
+import { SharedModule } from "../../shared.module";
 
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal.component';
 
@@ -7,8 +9,18 @@ describe('ConfirmDeleteModalComponent', () => {
   let fixture: ComponentFixture<ConfirmDeleteModalComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ConfirmDeleteModalComponent ]
+    await TestBed.configureTestingModule({imports: [
+      // ReactiveFormsModule,
+      //AngularFireModule.initializeApp(environment.firebase),
+      SharedModule,
+      //AppRoutingModule,
+      // BrowserAnimationsModule
+    ],
+      declarations: [ ConfirmDeleteModalComponent ],
+      providers: [
+        // { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ],
     })
     .compileComponents();
   });
