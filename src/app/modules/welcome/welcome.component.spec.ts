@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from "@angular/platform-browser";
 import { SharedModule } from "../shared/shared.module";
 
 import { WelcomeComponent } from './welcome.component';
@@ -32,5 +33,10 @@ describe('WelcomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain login button', () => {
+    let btn = fixture.debugElement.query(By.css('#loginBtn'))
+    expect(btn).toBeTruthy();
   });
 });

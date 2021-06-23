@@ -1,11 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { SensorType } from "../../sensors/components/edit-sensor-type-modal/edit-sensor-type-modal.component";
 
 @Pipe({
   name: 'getSensorType'
 })
 export class GetSensorTypePipe implements PipeTransform {
 
-  transform(sensorTypeId: string, sensorTypes: any[]): unknown {
+  transform(sensorTypeId: string, sensorTypes: SensorType[]): string {
+    console.log(sensorTypeId)
+
+    console.log(sensorTypes)
+
     if (!sensorTypeId) {
       return '';
     }

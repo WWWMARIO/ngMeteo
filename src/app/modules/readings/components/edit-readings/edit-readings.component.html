@@ -65,20 +65,22 @@
   </mat-form-field> -->
 
   <button
+    id="updateBtn"
     *ngIf="data"
     mat-raised-button
     (click)="updateReading()"
     color="primary"
-    [disabled]="loading"
+    [disabled]="readingForm.invalid || loading"
   >
     Update reading
   </button>
   <button
+    id="createNewBtn"
     *ngIf="!data"
     mat-raised-button
     (click)="newReading()"
     color="primary"
-    [disabled]="loading"
+    [disabled]="readingForm.invalid || loading"
   >
     Create new reading
   </button>

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from "@angular/platform-browser";
 import { SharedModule } from "src/app/modules/shared/shared.module";
 
 import { SensorsComponent } from './sensors.component';
@@ -29,4 +30,21 @@ describe('SensorsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain NEW SENSOR button', () => {
+    let btn = fixture.debugElement.query(By.css('#newBtn'))
+    expect(btn).toBeTruthy();
+  });
+
+  it('should contain sensors list', () => {
+    let sensorsList = fixture.debugElement.query(By.css('app-sensors-list'))
+    expect(sensorsList).toBeTruthy();
+  });
+
+  it('should contain sensor types list', () => {
+    let sensorTypeList = fixture.debugElement.query(By.css('app-sensor-types-list'))
+    expect(sensorTypeList).toBeTruthy();
+  });
+
+
 });

@@ -25,14 +25,13 @@ export interface MeteoStation {
 export class MeteoStationsComponent implements OnInit {
 
   panelOpenState = false;
-  meteoStations$: Observable<any[]>;
+  meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
 
   constructor(
     private dialog: MatDialog,
     private apiStationsService: ApiStationsService) { }
 
   ngOnInit(): void {
-    this.meteoStations$ = this.apiStationsService.getMeteoStations();// this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
   }
 
   onNew() {
@@ -46,7 +45,7 @@ export class MeteoStationsComponent implements OnInit {
   }
 
 
-  onEdit(meteoStation) {
+  onEdit(meteoStation: MeteoStation) {
     const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
       data:  meteoStation,
       // height: '90%',
@@ -54,7 +53,7 @@ export class MeteoStationsComponent implements OnInit {
     });
   }
 
-  onDelete(meteoStation) {
+  onDelete(meteoStation: MeteoStation) {
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
       // height: '90%',
       // width: '90%',

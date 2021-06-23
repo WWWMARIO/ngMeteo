@@ -7,6 +7,13 @@ import { Observable } from "rxjs";
 import { ApiStationsService } from "src/app/modules/meteo-stations/api-stations.service";
 import { ApiSensorsService } from "src/app/modules/sensors/api-sensors.service";
 
+export class Reading {
+  id: string;
+  value: number;
+  sensorId: string;
+}
+
+
 @Component({
   selector: 'app-edit-readings',
   templateUrl: './edit-readings.component.html',
@@ -20,7 +27,7 @@ export class EditReadingsComponent implements OnInit {
   loading = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data,
+    @Inject(MAT_DIALOG_DATA) public data: Reading,
     private formBuilder: FormBuilder,
     private firestore: AngularFirestore,
     private apiSensorsService: ApiSensorsService,
@@ -34,7 +41,7 @@ export class EditReadingsComponent implements OnInit {
     this.stations$ = this.apiStationsService.getMeteoStations();
     if (this.data) {
       this.readingForm = this.formBuilder.group({
-        value: [this.data.value, [Validators.required]],
+        value: [this.data.value, [Validators.required, Validators.pattern('^[0-9]+$')]],
         sensorId: [this.data.sensorId, [Validators.required]],
       });
     } else {
@@ -46,6 +53,7 @@ export class EditReadingsComponent implements OnInit {
   }
 
   async newReading() {
+    console.log(this.readingForm)
     if (this.readingForm.valid) {
       console.log(this.readingForm.value);
       const newReading = {
@@ -63,14 +71,15 @@ export class EditReadingsComponent implements OnInit {
           duration: 2000
         });
       }
-    } else {
+    } /* else {
       this.snackBar.open('Please input valid reading information', '', {
         duration: 2000
       });
-    }
+    } */
   }
 
   async updateReading() {
+    console.log(this.readingForm)
     if (this.readingForm.valid) {
       console.log(this.readingForm.value);
       const updatedReading = {
@@ -88,11 +97,11 @@ export class EditReadingsComponent implements OnInit {
           duration: 2000
         });
       }
-    } else {
+    }/*  else {
       this.snackBar.open('Please input valid reading information', '', {
         duration: 2000
       });
-    }
+    } */
   }
 
 }

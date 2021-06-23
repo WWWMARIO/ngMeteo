@@ -33,21 +33,22 @@
 
 
     <button
+      id="updateBtn"
       *ngIf="data"
       mat-raised-button
       (click)="updateSensorType()"
       color="primary"
-      [disabled]="loading"
+      [disabled]="sensorTypeForm.invalid || loading"
     >
       Update sensor type
     </button>
     <button
+      id="createNewBtn"
       *ngIf="!data"
       mat-raised-button
       (click)="newSensorType()"
       color="primary"
-      [disabled]="loading"
-      type="submit"
+      [disabled]="sensorTypeForm.invalid || loading"
     >
       Create new sensor type
     </button>

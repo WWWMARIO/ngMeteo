@@ -5,6 +5,12 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 
+export class SensorType {
+  id: string;
+  type: string;
+  unit:string;
+}
+
 @Component({
   selector: 'app-edit-sensor-type-modal',
   templateUrl: './edit-sensor-type-modal.component.html',
@@ -15,7 +21,7 @@ export class EditSensorTypeModalComponent implements OnInit {
   loading = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data,
+    @Inject(MAT_DIALOG_DATA) public data: SensorType,
     private formBuilder: FormBuilder,
     private firestore: AngularFirestore,
     private dialogRef: MatDialogRef<EditSensorTypeModalComponent>,
@@ -80,11 +86,11 @@ export class EditSensorTypeModalComponent implements OnInit {
           duration: 2000
         });
       }
-    } else {
+    } /*else {
       this.snackBar.open('Please input valid sensor type information', '', {
         duration: 2000
       });
-    }
+    }*/
   }
 
 }

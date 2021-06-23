@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ApiStationsService } from "src/app/modules/meteo-stations/api-stations.service";
 import { Observable } from "rxjs";
-import { AngularFirestore } from "@angular/fire/firestore";
 import { ApiSensorsService } from "../../api-sensors.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -15,8 +14,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class EditSensorModalComponent implements OnInit {
   sensorForm: FormGroup;
-  meteoStations$: Observable<any[]>;
-  sensorTypes$: Observable<any[]>;
+  meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
+  sensorTypes$: Observable<any[]> = this.apiSensorsService.getSensorTypes();
   loading = false;
 
 
@@ -30,20 +29,18 @@ export class EditSensorModalComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.meteoStations$ = this.apiStationsService.getMeteoStations();
-    this.sensorTypes$ = this.apiSensorsService.getSensorTypes();
     if (this.data) {
       this.sensorForm = this.formBuilder.group({
-        upperLimit: [this.data.upperLimit, [Validators.required]],
-        lowerLimit: [this.data.lowerLimit, [Validators.required]],
+        upperLimit: [this.data.upperLimit, [Validators.required, Validators.pattern('^[0-9]+$')]],
+        lowerLimit: [this.data.lowerLimit, [Validators.required, Validators.pattern('^[0-9]+$')]],
         description: [this.data.description, [Validators.required]],
         sensorTypeId: [this.data.sensorTypeId, [Validators.required]],
         stationId: [this.data.stationId, [Validators.required]],
       });
     } else {
       this.sensorForm = this.formBuilder.group({
-        upperLimit: ['', [Validators.required]],
-        lowerLimit: ['', [Validators.required]],
+        upperLimit: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+        lowerLimit: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
         description: ['', [Validators.required]],
         sensorTypeId: ['', [Validators.required]],
         stationId: ['', [Validators.required]],

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { By } from "@angular/platform-browser";
 import { SharedModule } from "src/app/modules/shared/shared.module";
 import { environment } from "src/environments/environment";
 
@@ -33,5 +34,15 @@ describe('ReadingsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain NEW READING button', () => {
+    let btn = fixture.debugElement.query(By.css('#newBtn'))
+    expect(btn).toBeTruthy();
+  });
+
+  it('should contain readings list', () => {
+    let readingsList = fixture.debugElement.query(By.css('app-readings-list'))
+    expect(readingsList).toBeTruthy();
   });
 });

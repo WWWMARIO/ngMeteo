@@ -5,7 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class GetStationNamePipe implements PipeTransform {
 
-  transform(stationId: string, stations: any[]): unknown {
+  transform(stationId: string, stations: any[]): string {
+
     if (!stationId) {
       return '';
     }

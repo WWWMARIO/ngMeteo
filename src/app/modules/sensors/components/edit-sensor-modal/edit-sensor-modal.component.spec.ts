@@ -37,4 +37,129 @@ describe('EditSensorModalComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Sensor form should be valid when all inputs are correct', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('10');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('20');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeFalsy();
+  });
+
+  it('Sensor form should be invalid when lower limit is not set', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('20');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+  it('Sensor form should be invalid when upper limit is not set', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('10');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+  it('Sensor form should be invalid when description is not set', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('10');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('20');
+    const description = component.sensorForm.controls.description;
+    description.setValue('');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+  it('Sensor form should be invalid when sensor type id is not set', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('10');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('20');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+  it('Sensor form should be invalid when station id is not set', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('10');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('20');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+  it('Sensor form should be invalid when lower limit is not numeric not set', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('xyz');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('20');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+  it('Sensor form should be invalid when upper limit is not numeric not numeric', () => {
+    const lowerLimit = component.sensorForm.controls.lowerLimit;
+    lowerLimit.setValue('10');
+    const upperLimit = component.sensorForm.controls.upperLimit;
+    upperLimit.setValue('xyz');
+    const description = component.sensorForm.controls.description;
+    description.setValue('Stanica druga Temp');
+    const sensorTypeId = component.sensorForm.controls.sensorTypeId;
+    sensorTypeId.setValue('31wLXK7Bg59pXvVikvgO');
+    const stationId = component.sensorForm.controls.stationId;
+    stationId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.sensorForm.invalid).toBeTruthy();
+  });
+
+
+
+
+
 });

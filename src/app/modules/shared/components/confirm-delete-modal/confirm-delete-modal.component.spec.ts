@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogRef } from "@angular/material/dialog";
+import { By } from "@angular/platform-browser";
 import { SharedModule } from "../../shared.module";
 
 import { ConfirmDeleteModalComponent } from './confirm-delete-modal.component';
@@ -33,5 +34,15 @@ describe('ConfirmDeleteModalComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should contain delete button', () => {
+    let btn = fixture.debugElement.query(By.css('#deleteBtn'))
+    expect(btn).toBeTruthy();
+  });
+
+  it('should contain cancel button', () => {
+    let btn = fixture.debugElement.query(By.css('#cancelBtn'))
+    expect(btn).toBeTruthy();
   });
 });
