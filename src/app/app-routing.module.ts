@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { ShellComponent } from './core/shell/shell.component';
-import { WelcomeComponent } from './modules/welcome/welcome.component';
 import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
+import { WelcomeComponent } from "./modules/welcome/pages/welcome/welcome.component";
 
 /* const routes: Routes = [
   { path: 'meteoStations', loadChildren: () => import('./modules/meteo-station/meteo-station.module').then(m => m.MeteoStationModule) },

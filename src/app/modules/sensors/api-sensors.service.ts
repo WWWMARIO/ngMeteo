@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,13 @@ export class ApiSensorsService {
   getSensors() {
     return this.firestore.collection('meteoStationSensor').valueChanges({ idField: 'id' })
   }
+
+ /*  getSensorsForStation(stationId) {
+    return this.firestore.collection('meteoStationSensor').valueChanges({ idField: 'id' }).pipe(map((sensors)=> {
+      console.log(sensors)
+      return sensors
+    }))
+  } */
 
   addNewSensor(newSensor) {
     return this.firestore.collection('meteoStationSensor').add(newSensor);

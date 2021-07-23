@@ -9,5 +9,6 @@ export const environment = {
     appId: "1:295966461137:web:c07e70647b09dfc03449f0",
     measurementId: "G-PE9S3FQ5NM"
 
-  }
+  },
+  gmapsKey: 'AIzaSyBr5hFs0pirPs_by-lzxUsS7KXT_ZmwqD0'
 };

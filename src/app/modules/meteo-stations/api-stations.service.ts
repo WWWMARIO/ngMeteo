@@ -6,6 +6,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 })
 export class ApiStationsService {
 
+
   constructor(private firestore: AngularFirestore) { }
 
   getMeteoStations() {

@@ -50,7 +50,7 @@ export class EditMeteoStationModalComponent implements OnInit {
         name: this.meteoStationForm.value.name,
         description: this.meteoStationForm.value.description,
         imageUrl: this.meteoStationForm.value.imageUrl,
-        geoLocation: new firebase.firestore.GeoPoint(this.meteoStationForm.value.longitude, this.meteoStationForm.value.latitude)
+        geoLocation: new firebase.firestore.GeoPoint(this.meteoStationForm.value.latitude, this.meteoStationForm.value.longitude)
       };
       try {
         this.loading = true;
@@ -75,7 +75,7 @@ export class EditMeteoStationModalComponent implements OnInit {
         name: this.meteoStationForm.value.name,
         description: this.meteoStationForm.value.description,
         imageUrl: this.meteoStationForm.value.imageUrl,
-        geoLocation: new firebase.firestore.GeoPoint(this.meteoStationForm.value.longitude, this.meteoStationForm.value.latitude)
+        geoLocation: new firebase.firestore.GeoPoint(this.meteoStationForm.value.latitude, this.meteoStationForm.value.longitude)
       };
       try {
         this.loading = true;

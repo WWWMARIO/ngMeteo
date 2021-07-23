@@ -11,6 +11,8 @@ import { AngularFireModule } from "@angular/fire";
 import { environment } from "src/environments/environment";
 import { SharedModule } from "./modules/shared/shared.module";
 import { LoginComponent } from './core/login/login.component';
+import { AgmCoreModule } from "@agm/core";
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import { LoginComponent } from './core/login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    SharedModule
+    SharedModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.gmapsKey
+    })
 
   ],
   providers: [],
