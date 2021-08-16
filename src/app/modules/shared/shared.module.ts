@@ -26,6 +26,7 @@ import { GetSensorTypePipe } from './pipes/get-sensor-type.pipe';
 import { GetStationNamePipe } from './pipes/get-station-name.pipe';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { GetLatestReadingForSensorPipe } from './pipes/get-latest-reading-for-sensor.pipe';
 
 
 
@@ -37,7 +38,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [/* OrdersListComponent, FilterMenuByCategoryPipe */
-    ConfirmDeleteModalComponent, GetSensorTypePipe, GetStationNamePipe
+    ConfirmDeleteModalComponent, GetSensorTypePipe, GetStationNamePipe, GetLatestReadingForSensorPipe
   ],
   imports: [
     CommonModule,
@@ -58,7 +59,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatTableModule,
     MatSelectModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
 
 
 
@@ -84,7 +85,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     GetStationNamePipe,
     MatSelectModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    GetLatestReadingForSensorPipe
 
 
   ],
