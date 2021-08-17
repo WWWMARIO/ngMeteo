@@ -1,22 +1,25 @@
-<mat-toolbar>
-  <button
-    id="loginBtn"
-    mat-raised-button
-    color="primary"
-    type="button"
-    (click)="login()"
-  >
-    Login
-  </button>
-</mat-toolbar>
 <div class="header">International Education Program Veleri-OI IoT School</div>
 <div class="subheader">Case study of the IoT project "Cov protect System"</div>
+<div class="flex-row">
+  <!-- <h1>Meteo stations</h1> -->
+  <div style="margin-left: auto">
+    <button
+      style="margin-right: 20px; margin-top: 5px; margin-bottom: 5px"
+      (click)="onNew()"
+      color="accent"
+      mat-mini-fab
+      matTooltip="Add new meteo station"
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
 <div *ngIf="meteoStations$ | async as meteoStations" class="map-container">
   <agm-map
     [latitude]="meteoStations[0].geoLocation.latitude"
     [longitude]="meteoStations[0].geoLocation.longitude"
-    >
-  >
+    (mapReady)="mapReadyHandler($event)">
+
     <agm-marker
       *ngFor="let station of meteoStations"
       [latitude]="station.geoLocation.latitude"

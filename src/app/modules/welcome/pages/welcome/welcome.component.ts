@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { LoginComponent } from "src/app/core/login/login.component";
@@ -14,10 +14,14 @@ import { AngularFireAuth } from '@angular/fire/auth'; */
 })
 export class WelcomeComponent implements OnInit {
   meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
+/*   dragLatitude = 0;
+  dragLongitude = 0; */
+
 
   constructor(
     private dialog: MatDialog,
-    private apiStationsService: ApiStationsService) { }
+    private apiStationsService: ApiStationsService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -36,6 +40,9 @@ export class WelcomeComponent implements OnInit {
       // height: '90%',
     });
   }
+
+
+
 
 
 }

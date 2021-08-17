@@ -13,6 +13,7 @@ import firebase from "firebase/app";
 export class EditMeteoStationModalComponent implements OnInit {
   meteoStationForm: FormGroup;
   loading = false;
+  isNewStation = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -24,7 +25,6 @@ export class EditMeteoStationModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      console.log(this.data);
       this.meteoStationForm = this.formBuilder.group({
         name: [this.data.name, [Validators.required]],
         imageUrl: [this.data.imageUrl, [Validators.required]],

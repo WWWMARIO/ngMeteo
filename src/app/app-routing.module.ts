@@ -6,7 +6,7 @@ import {
   AngularFireAuthGuard,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { WelcomeComponent } from "./modules/welcome/pages/welcome/welcome.component";
+import { WelcomeComponent } from './modules/welcome/pages/welcome/welcome.component';
 
 /* const routes: Routes = [
   { path: 'meteoStations', loadChildren: () => import('./modules/meteo-station/meteo-station.module').then(m => m.MeteoStationModule) },
@@ -47,6 +47,13 @@ const routes: Routes = [
           import('./modules/readings/readings.module').then(
             (m) => m.ReadingsModule
           ),
+      },
+      {
+        path: 'map',
+        canActivate: [AngularFireAuthGuard],
+        data: { authGuardPipe: redirectUnauthorizedToWelcome },
+        loadChildren: () =>
+          import('./modules/map/map.module').then((m) => m.MapModule),
       },
     ],
   },

@@ -5,6 +5,7 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
+      <a  mat-list-item routerLink="/map">Map</a>
       <a id="linkToStation" mat-list-item routerLink="/meteo-stations">Stations</a>
       <a id="linkToSensors" mat-list-item routerLink="/sensors">Sensors</a>
       <a id="linkToReadings" mat-list-item routerLink="/readings">Readings</a>
