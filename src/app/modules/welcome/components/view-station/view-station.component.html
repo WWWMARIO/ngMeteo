@@ -1,17 +1,45 @@
-<mat-card class="example-card">
-  <mat-card-header>
-   <!--  <div mat-card-avatar class="example-header-image"></div> -->
-    <mat-card-title>{{data.name}}</mat-card-title>
-    <mat-card-subtitle>{{data.description}}</mat-card-subtitle>
-  </mat-card-header>
-  <img style="max-height: 500px;" mat-card-image [src]="data.imageUrl" alt="Photo of a Shiba Inu">
-  <mat-card-content *ngIf="readings$ | async as readings">
-    <p *ngFor="let sensor of sensors$ | async">
-      {{sensor.description}}:{{readings | getLatestReadingForSensor: sensor.id}}
-    </p>
-  </mat-card-content>
-  <!-- <mat-card-actions>
+<ng-container *ngIf="userAuthenticated | async">
+  <mat-button-toggle-group
+    [(ngModel)]="viewType"
+    name="fontStyle"
+    aria-label="Font Style"
+  >
+    <mat-button-toggle value="view">View</mat-button-toggle>
+    <mat-button-toggle value="edit">Edit</mat-button-toggle>
+    <mat-button-toggle value="readings">Readings</mat-button-toggle>
+  </mat-button-toggle-group>
+</ng-container>
+
+<ng-container *ngIf="viewType === 'view'">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--  <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>{{ data.name }}</mat-card-title>
+      <mat-card-subtitle>{{ data.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      style="max-height: 500px"
+      mat-card-image
+      [src]="data.imageUrl"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-content *ngIf="readings$ | async as readings">
+      <p *ngFor="let sensor of sensors$ | async">
+        {{ sensor.description }}:{{
+          readings | getLatestReadingForSensor: sensor.id
+        }}
+      </p>
+    </mat-card-content>
+    <!-- <mat-card-actions>
     <button mat-button>LIKE</button>
     <button mat-button>SHARE</button>
   </mat-card-actions> -->
-</mat-card>
+  </mat-card>
+</ng-container>
+<!-- <ng-container *ngIf="viewType === 'edit'"
+  > -->
+  <app-edit-meteo-station-modal></app-edit-meteo-station-modal>
+  <!-- </ng-container> -->
+<ng-container *ngIf="viewType === 'readings'">
+  <app-readings></app-readings>
+</ng-container>
