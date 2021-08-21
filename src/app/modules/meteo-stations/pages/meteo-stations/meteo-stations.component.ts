@@ -61,7 +61,7 @@ export class MeteoStationsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
       if (confirmDelete) {
         // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
-        this.apiStationsService.deleteMeteoStations(meteoStation.id);
+        this.apiStationsService.deleteMeteoStation(meteoStation.id);
       }
     });
   }

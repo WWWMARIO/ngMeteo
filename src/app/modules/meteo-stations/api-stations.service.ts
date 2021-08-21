@@ -13,7 +13,7 @@ export class ApiStationsService {
     return this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
   }
 
-  deleteMeteoStations(meteoStationId) {
+  deleteMeteoStation(meteoStationId) {
     return this.firestore.collection('meteoStation').doc(meteoStationId).delete();
   }
 }

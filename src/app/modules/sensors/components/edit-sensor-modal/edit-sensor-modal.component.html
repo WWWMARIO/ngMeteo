@@ -61,16 +61,7 @@
   </mat-form-field>
 
   <button
-    *ngIf="data"
-    mat-raised-button
-    (click)="updateSensor()"
-    color="primary"
-    [disabled]="sensorForm.invalid || loading"
-  >
-    Update sensor type
-  </button>
-  <button
-    *ngIf="!data"
+    *ngIf="!data || data.newSensorStationId; else updateSensorBtn"
     mat-raised-button
     (click)="newSensor()"
     color="primary"
@@ -78,4 +69,18 @@
   >
     Create new sensor
   </button>
+  <ng-template #updateSensorBtn>
+  <button
+    *ngIf="data"
+    mat-raised-button
+    (click)="updateSensor()"
+    color="primary"
+    [disabled]="sensorForm.invalid || loading"
+  >
+    Update sensor
+  </button>
+</ng-template>
+
+
 </form>
+

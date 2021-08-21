@@ -2,8 +2,9 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { LoginComponent } from "src/app/core/login/login.component";
+import { MeteoStation } from "src/app/modules/meteo-stations/pages/meteo-stations/meteo-stations.component";
 import { ApiStationsService } from "../../../meteo-stations/api-stations.service";
-import { ViewStationComponent } from "../../components/view-station/view-station.component";
+import { ViewStationComponent } from "../../../meteo-stations/components/view-station/view-station.component";
 /* import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth'; */
 
@@ -32,12 +33,14 @@ export class WelcomeComponent implements OnInit {
       });
   }
 
-  onClickStation(station) {
+  onClickStation(station: MeteoStation) {
     const dialogRef = this.dialog.open(ViewStationComponent, {
       panelClass: 'custom-dialog-container',
       data:  station,
+      height: '90%',
+      width: '90%',
 
-      // height: '90%',
+
     });
   }
 

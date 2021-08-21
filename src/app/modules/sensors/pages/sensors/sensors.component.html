@@ -5,15 +5,15 @@
     <button
       id="newBtn"
       style="margin-right: 20px; margin-top: 5px; margin-bottom: 5px"
-      (click)="onNew()"
+      (click)="onNew(stationId)"
       color="accent"
       mat-mini-fab
-      matTooltip="Add new meteo station"
+      matTooltip="Add new sensor"
     >
       <mat-icon>add</mat-icon>
     </button>
   </div>
 </div>
 
-<app-sensors-list></app-sensors-list>
+<app-sensors-list [stationId]="stationId"></app-sensors-list>
 <app-sensor-types-list></app-sensor-types-list>

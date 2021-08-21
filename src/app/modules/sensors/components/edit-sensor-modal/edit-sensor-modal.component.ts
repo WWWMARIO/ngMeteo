@@ -30,7 +30,16 @@ export class EditSensorModalComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    if (this.data) {
+    if (this.data.newSensorStationId) {
+      this.sensorForm = this.formBuilder.group({
+        upperLimit: ['', [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
+        lowerLimit: ['', [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
+        description: ['', [Validators.required]],
+        sensorTypeId: ['', [Validators.required]],
+        stationId: [this.data.newSensorStationId, [Validators.required]],
+      });
+    }
+    else if (this.data) {
       this.sensorForm = this.formBuilder.group({
         upperLimit: [this.data.upperLimit, [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
         lowerLimit: [this.data.lowerLimit, [Validators.required, Validators.pattern(this.decimalNumberRegex)]],

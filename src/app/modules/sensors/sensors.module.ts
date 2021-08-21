@@ -12,11 +12,11 @@ import { EditSensorModalComponent } from './components/edit-sensor-modal/edit-se
 
 @NgModule({
   declarations: [
-    SensorsComponent,
+    /* SensorsComponent,
     SensorTypesListComponent,
     EditSensorTypeModalComponent,
     SensorsListComponent,
-    EditSensorModalComponent
+    EditSensorModalComponent */
   ],
   imports: [
     CommonModule,

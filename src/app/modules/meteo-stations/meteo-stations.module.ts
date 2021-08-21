@@ -10,7 +10,6 @@ import { EditMeteoStationModalComponent } from './components/edit-meteo-station-
 @NgModule({
   declarations: [
     MeteoStationsComponent,
-    EditMeteoStationModalComponent
   ],
   imports: [
     CommonModule,

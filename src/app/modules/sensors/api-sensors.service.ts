@@ -13,6 +13,7 @@ export class ApiSensorsService {
     return this.firestore.collection('meteoStationSensor').valueChanges({ idField: 'id' })
   }
 
+
   getSensorsForStation(stationId) {
     return this.firestore.collection('meteoStationSensor').valueChanges({ idField: 'id' }).pipe(map((sensors)=> {
       return sensors.filter((sensor: any)=>{

@@ -41,7 +41,7 @@ export class EditReadingsComponent implements OnInit {
     this.stations$ = this.apiStationsService.getMeteoStations();
     if (this.data) {
       this.readingForm = this.formBuilder.group({
-        value: [this.data.value, [Validators.required, Validators.pattern('^[0-9]+$')]],
+        value: [this.data.value, [Validators.required]],
         sensorId: [this.data.sensorId, [Validators.required]],
       });
     } else {

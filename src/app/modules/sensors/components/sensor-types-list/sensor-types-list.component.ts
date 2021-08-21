@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { ConfirmDeleteModalComponent } from "src/app/modules/shared/components/confirm-delete-modal/confirm-delete-modal.component";
@@ -11,6 +11,7 @@ import { EditSensorTypeModalComponent } from "../edit-sensor-type-modal/edit-sen
   styleUrls: ['./sensor-types-list.component.scss']
 })
 export class SensorTypesListComponent implements OnInit {
+
   selectable = true;
   removable = true;
 
@@ -21,6 +22,7 @@ export class SensorTypesListComponent implements OnInit {
     private apiSensorsService: ApiSensorsService) { }
 
   ngOnInit(): void {
+
     // this.sensorTypes$ = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
   }

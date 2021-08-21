@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from "@angular/material/dialog";
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -15,6 +15,7 @@ import { EditSensorModalComponent } from "../edit-sensor-modal/edit-sensor-modal
   styleUrls: ['./sensors-list.component.scss']
 })
 export class SensorsListComponent implements OnInit {
+  @Input() stationId;
   @ViewChild(MatSort) sort: MatSort;
   sensorTypes$: Observable<any[]>;
   stations$: Observable<any[]>;
@@ -27,7 +28,7 @@ export class SensorsListComponent implements OnInit {
     'upperLimit',
     'description',
     'sensorTypeId',
-    'stationId',
+    // 'stationId',
     'review'
   ];
 
@@ -41,14 +42,22 @@ export class SensorsListComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    console.log(this.stationId)
     // this.stations$ = this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
     this.stations$ = this.apiStationsService.getMeteoStations();
     //  = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
-    this.sensorsSub = this.apiSensorsService.getSensors().subscribe((response)=>{
-      this.dataSource.data = response;
-      this.dataSource.sort = this.sort;
-    });
+    if (this.stationId) {
+      this.sensorsSub = this.apiSensorsService.getSensorsForStation(this.stationId).subscribe((response)=>{
+        this.dataSource.data = response;
+        this.dataSource.sort = this.sort;
+      });
+    } else {
+      this.sensorsSub = this.apiSensorsService.getSensors().subscribe((response)=>{
+        this.dataSource.data = response;
+        this.dataSource.sort = this.sort;
+      });
+    }
   }
 
   viewSensorDetails(sensor) {
@@ -72,9 +81,7 @@ export class SensorsListComponent implements OnInit {
     });
   }
 
-  viewReadings(sensor) {
-    console.log(sensor)
-  }
+
 
   ngOnDestroy() {
     this.sensorsSub.unsubscribe();

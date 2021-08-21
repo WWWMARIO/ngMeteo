@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ApiStationsService } from "src/app/modules/meteo-stations/api-stations.service";
 import { EditMeteoStationModalComponent } from "src/app/modules/meteo-stations/components/edit-meteo-station-modal/edit-meteo-station-modal.component";
 import { MeteoStation } from "src/app/modules/meteo-stations/pages/meteo-stations/meteo-stations.component";
+import { ViewStationComponent } from "src/app/modules/meteo-stations/components/view-station/view-station.component";
 
 @Component({
   selector: 'app-map',
@@ -28,7 +29,7 @@ export class MapComponent implements OnInit {
   onNew() {
     const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
       // height: '90%',
-      width: '90%',
+      width: '450px',
     });
     /* dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -37,10 +38,11 @@ export class MapComponent implements OnInit {
 
 
   onClickStation(meteoStation: MeteoStation) {
-    const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
+    const dialogRef = this.dialog.open(ViewStationComponent, {
       data:  meteoStation,
-      // height: '90%',
+      height: '90%',
       width: '90%',
+      panelClass: 'custom-dialog-container',
     });
   }
 
@@ -53,6 +55,15 @@ export class MapComponent implements OnInit {
     // });
     console.log(station)
   } */
+  onClickMap(lat: number, long: number) {
+    const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
+      data:  {latitude: lat, longitude: long },
+      // height: '90%',
+      width: '450px',
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
 
 
 
@@ -61,7 +72,8 @@ export class MapComponent implements OnInit {
     this.mapClickListener = this.map.addListener('click', (e: google.maps.MouseEvent) => {
       this.zone.run(() => {
         // Here we can get correct event
-        console.log(e.latLng.lat(), e.latLng.lng());
+        this.onClickMap(e.latLng.lat(), e.latLng.lng())
+        // console.log(e.latLng.lat(), e.latLng.lng());
       });
     });
   }
