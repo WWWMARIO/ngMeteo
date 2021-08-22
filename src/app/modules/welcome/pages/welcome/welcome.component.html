@@ -15,6 +15,7 @@
   <agm-map
     [latitude]="meteoStations[0].geoLocation.latitude"
     [longitude]="meteoStations[0].geoLocation.longitude"
+    (mapReady)="mapReadyHandler($event)"
     >
   >
     <agm-marker

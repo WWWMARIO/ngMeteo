@@ -112,8 +112,10 @@ export class EditMeteoStationModalComponent implements OnInit {
     }
   }
 
-  onDelete(meteoStationId: string) {
+  onDelete(meteoStation: MeteoStation) {
+    console.log(meteoStation)
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
+      data: {message: `Are you sure you want do delete station ${meteoStation.name}?`}
       // height: '90%',
       // width: '90%',
     });
@@ -121,8 +123,8 @@ export class EditMeteoStationModalComponent implements OnInit {
       if (confirmDelete) {
         // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
         this.dialogRef.close();
-        await this.apiStationsService.deleteMeteoStation(meteoStationId);
-        this.snackBar.open('Station deleted', '', {
+        await this.apiStationsService.deleteMeteoStation(meteoStation.id);
+        this.snackBar.open(`Station ${meteoStation.name} deleted`, '', {
           duration: 2000
         });
 

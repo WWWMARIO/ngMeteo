@@ -10,7 +10,7 @@ export class GetLowestReadingForSensorPipe implements PipeTransform {
     const readingsForSensor =  readings.filter((reading)=> {
       return reading.sensorId === sensorId
     })
-    const sortedReadings =  readingsForSensor.sort((a, b) => {return b.value - a.value; });
+    const sortedReadings =  readingsForSensor.sort((a, b) => {return a.value - b.value; });
     return sortedReadings[0];
   }
 

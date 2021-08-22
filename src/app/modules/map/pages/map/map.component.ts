@@ -13,7 +13,7 @@ import { ViewStationComponent } from "src/app/modules/meteo-stations/components/
 })
 export class MapComponent implements OnInit {
   meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
-  map;
+  map: google.maps.Map;
   mapClickListener ;
 
 
@@ -69,6 +69,9 @@ export class MapComponent implements OnInit {
 
   public mapReadyHandler(map: google.maps.Map): void {
     this.map = map;
+    this.map.setOptions({
+      fullscreenControl: false,
+  });
     this.mapClickListener = this.map.addListener('click', (e: google.maps.MouseEvent) => {
       this.zone.run(() => {
         // Here we can get correct event

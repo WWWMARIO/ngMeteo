@@ -14,6 +14,7 @@ import { AngularFireAuth } from '@angular/fire/auth'; */
   styleUrls: ['./welcome.component.scss']
 })
 export class WelcomeComponent implements OnInit {
+  map: google.maps.Map;
   meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
 /*   dragLatitude = 0;
   dragLongitude = 0; */
@@ -42,6 +43,13 @@ export class WelcomeComponent implements OnInit {
 
 
     });
+  }
+
+  public mapReadyHandler(map: google.maps.Map): void {
+    this.map = map;
+    this.map.setOptions({
+      fullscreenControl: false,
+  });
   }
 
 

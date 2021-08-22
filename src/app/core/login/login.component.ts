@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     try {
       await this.auth.signInWithEmailAndPassword(this.logInForm.value.email, this.logInForm.value.password)
       this.dialogRef.close();
-      this.router.navigate(['/meteo-stations']);
+      this.router.navigate(['/map']);
     } catch (err) {
       this.loading = false;
       this.dialogRef.close();

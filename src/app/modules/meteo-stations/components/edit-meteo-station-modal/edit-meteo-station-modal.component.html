@@ -1,5 +1,5 @@
 <h1>Meteo station</h1>
-<form [formGroup]="meteoStationForm" class="flex-column" style="width: 400px">
+<form [formGroup]="meteoStationForm" class="flex-column">
   <mat-form-field>
     <mat-label>Name</mat-label>
     <input type="text" matInput formControlName="name" placeholder="Name" />
@@ -58,6 +58,8 @@
     </mat-error>
   </mat-form-field>
 
+</form>
+<div class="flex-row" style="justify-content: space-between">
   <button
     *ngIf="data?.id"
     mat-raised-button
@@ -76,15 +78,44 @@
   >
     Create new meteo station
   </button>
-</form>
-<button
-  *ngIf="data?.id"
-  mat-raised-button
-  (click)="onDelete(this.data?.id)"
-  color="primary"
->
-  <mat-icon>delete</mat-icon>
-</button>
+  <button
+    *ngIf="data?.id"
+    mat-button
+    (click)="onDelete(this.data)"
+    color="warn"
+  >
+    <mat-icon mat-button>delete</mat-icon>
+  </button>
+</div>
+<!-- <mat-dialog-actions align="end">
+   <button
+   *ngIf="data?.id"
+   mat-raised-button
+   (click)="updateStation()"
+   color="primary"
+   [disabled]="loading"
+ >
+   Update meteo station
+ </button>
+ <button
+   *ngIf="!data?.id"
+   mat-raised-button
+   (click)="newStation()"
+   color="primary"
+   [disabled]="loading"
+ >
+   Create new meteo station
+ </button>
+ <button
+   *ngIf="data?.id"
+   mat-button
+   (click)="onDelete(this.data)"
+   color="warn"
+ >
+   <mat-icon mat-button>delete</mat-icon>
+ </button>
+
+ </mat-dialog-actions> -->
 
 <!--   <div>
     <button mat-raised-button (click)="onSignUp()" color="primary">

@@ -1,3 +1,51 @@
-<p>Confirm deletion</p>
-<button style ="margin:20px" id="cancelBtn" mat-raised-button (click)="onCancel()" color="primary">Cancel</button>
-<button style ="margin:20px" id="deleteBtn" mat-raised-button (click)="onDelete()" color="warn">Delete</button>
+<!-- <p *ngIf="data.message; else defaultMsg">{{ data.message }}</p>
+<ng-template #defaultMsg><p>Confirm deletion?</p></ng-template>
+
+<button
+  style="margin: 20px"
+  id="cancelBtn"
+  mat-button
+  (click)="onCancel()"
+  color="primary"
+>
+  Cancel
+</button>
+<button
+  style="margin: 20px"
+  id="deleteBtn"
+  mat-stroked-button
+  (click)="onDelete()"
+  color="warn"
+>
+  Delete
+</button> -->
+
+<h2 mat-dialog-title>Delete</h2>
+<mat-dialog-content class="mat-typography">
+  <h3 *ngIf="data?.message; else defaultMsg">{{ data?.message }}</h3>
+  <ng-template #defaultMsg><h3>Confirm deletion?</h3></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+ <!--  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+  <button
+  id="cancelBtn"
+  mat-button
+  (click)="onCancel()"
+  color="primary"
+  cdkFocusInitial
+>
+  Cancel
+</button>
+<button
+  id="deleteBtn"
+  mat-stroked-button
+  (click)="onDelete()"
+  color="warn"
+
+>
+  Delete
+
+</button>
+
+</mat-dialog-actions>
