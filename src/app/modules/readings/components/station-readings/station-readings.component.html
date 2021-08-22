@@ -1,0 +1,81 @@
+<!-- <div *ngFor="let sensor of sensors$ | async">{{sensor | json}}</div>
+ -->
+<mat-accordion>
+  <mat-expansion-panel
+    hideToggle
+    *ngFor="let sensor of sensors$ | async"
+  >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ sensor.description }}
+
+
+      </mat-panel-title>
+      <mat-panel-description *ngIf="readings$ | async as read">
+        <span style="margin-left: auto;">{{
+          (read | getLatestReadingForSensor: sensor.id)?.value
+        }}
+      </span>
+      {{
+        (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
+      }}
+        <span style="margin-left: 20px;">
+          {{
+            (
+              read | getLatestReadingForSensor: sensor.id
+            )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+          }}
+        </span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="flex-row">
+      <div style="margin-left: auto">
+        <button
+          id="newBtn"
+          style="margin-right: 20px; margin-top: 5px; margin-bottom: 5px"
+          (click)="onNew(sensor.id)"
+          color="accent"
+          mat-mini-fab
+          matTooltip="Add new reading"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <app-readings-list [readings$]="readings$" [sensorId]="sensor.id"></app-readings-list>
+    <!-- <div class="flex-row">
+      <img [src]="meteoStation.imageUrl" style="height: 150px" />
+      <div class="flex-column">
+        <div>
+          Latitude:
+          <span>{{ meteoStation.geoLocation.latitude }} &#176;</span>
+        </div>
+        <div>
+        Longitude:
+          <span>{{ meteoStation.geoLocation.longitude }} &#176;</span>
+        </div>
+        <div>
+          Description: <span>{{ meteoStation.description }}</span>
+        </div>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          (click)="onEdit(meteoStation)"
+          color="primary"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          (click)="onDelete(meteoStation)"
+          color="primary"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div> -->
+  </mat-expansion-panel>
+
+</mat-accordion>

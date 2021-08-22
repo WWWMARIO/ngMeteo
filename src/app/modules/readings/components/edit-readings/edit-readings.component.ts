@@ -27,7 +27,7 @@ export class EditReadingsComponent implements OnInit {
   loading = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: Reading,
+    @Inject(MAT_DIALOG_DATA) public data,
     private formBuilder: FormBuilder,
     private firestore: AngularFirestore,
     private apiSensorsService: ApiSensorsService,
@@ -39,7 +39,13 @@ export class EditReadingsComponent implements OnInit {
     this.sensors$ = this.apiSensorsService.getSensors();
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes();
     this.stations$ = this.apiStationsService.getMeteoStations();
-    if (this.data) {
+    console.log(this.data)
+    if (this.data.newReadingSensorid) {
+      this.readingForm = this.formBuilder.group({
+        value: ['', [Validators.required]],
+        sensorId: [this.data.newReadingSensorid, [Validators.required]],
+      });
+    }  else if (this.data) {
       this.readingForm = this.formBuilder.group({
         value: [this.data.value, [Validators.required]],
         sensorId: [this.data.sensorId, [Validators.required]],

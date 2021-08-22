@@ -48,16 +48,16 @@
       <mat-card-content *ngIf="readings$ | async as readings">
         <div *ngFor="let sensor of sensors$ | async" class="flex-row">
           {{ sensor.description }}:{{
-            (readings | getLatestReadingForSensor: sensor.id).value
+            (readings | getLatestReadingForSensor: sensor.id)?.value
           }}
           {{
-            (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)).unit
+            (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
           }}
           <span style="margin-left: auto">
             {{
               (
                 readings | getLatestReadingForSensor: sensor.id
-              ).timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+              )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
             }}
           </span>
         </div>
@@ -74,32 +74,32 @@
         <div *ngFor="let sensor of sensors$ | async" class="flex-column">
           <p class="flex-row">
             Min {{ sensor.description | lowercase }}:{{
-              (readings | getLowestReadingForSensor: sensor.id).value
+              (readings | getLowestReadingForSensor: sensor.id)?.value
             }}
             {{
-              (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)).unit
+              (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
             }}
             <span style="margin-left: auto">
               {{
                 (
                   readings | getLowestReadingForSensor: sensor.id
-                ).timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+                )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
               }}
             </span>
           </p>
 
           <p class="flex-row">
             Max {{ sensor.description | lowercase }}:{{
-              (readings | getHighestReadingForSensor: sensor.id).value
+              (readings | getHighestReadingForSensor: sensor.id)?.value
             }}
             {{
-              (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)).unit
+              (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
             }}
             <span style="margin-left: auto">
               {{
                 (
                   readings | getHighestReadingForSensor: sensor.id
-                ).timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+                )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
               }}
             </span>
           </p>
@@ -118,7 +118,7 @@
             readings | getAverageReadingForSensor: sensor.id | number: "1.2-2"
           }}
           {{
-            (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)).unit
+            (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
           }}
         </div>
       </mat-card-content>
@@ -129,7 +129,7 @@
   <app-edit-meteo-station-modal></app-edit-meteo-station-modal>
 </ng-container>
 <ng-container *ngIf="viewType === 'readings'">
-  <app-readings></app-readings>
+  <app-station-readings [stationId]="data.id"></app-station-readings>
 </ng-container>
 
 <ng-container *ngIf="viewType === 'sensors'">

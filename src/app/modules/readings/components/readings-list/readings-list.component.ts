@@ -14,6 +14,7 @@ import { EditReadingsComponent } from "../edit-readings/edit-readings.component"
 })
 export class ReadingsListComponent implements OnInit {
   @Input() readings$: Observable<any[]>;
+  @Input() sensorId: string;
   @ViewChild(MatSort) sort: MatSort;
   readingsSub: Subscription;
 
@@ -33,7 +34,14 @@ export class ReadingsListComponent implements OnInit {
   ngOnInit(): void {
     // this.apiItemsService.getItems().subscribe();
     this.readingsSub = this.readings$.subscribe((response: any[]) => {
-      this.dataSource.data = response;
+      if (this.sensorId) {
+        this.dataSource.data =  response.filter((reading)=> {
+          return reading.sensorId === this.sensorId
+        })
+      } else {
+        this.dataSource.data = response;
+      }
+
       this.dataSource.sort = this.sort;
     });
   }

@@ -37,6 +37,8 @@ import { SensorTypesListComponent } from "../sensors/components/sensor-types-lis
 import { EditSensorTypeModalComponent } from "../sensors/components/edit-sensor-type-modal/edit-sensor-type-modal.component";
 import { SensorsListComponent } from "../sensors/components/sensors-list/sensors-list.component";
 import { EditSensorModalComponent } from "../sensors/components/edit-sensor-modal/edit-sensor-modal.component";
+import { StationReadingsComponent } from "../readings/components/station-readings/station-readings.component";
+import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.pipe';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { EditSensorModalComponent } from "../sensors/components/edit-sensor-moda
     SensorTypesListComponent,
     EditSensorTypeModalComponent,
     SensorsListComponent,
-    EditSensorModalComponent
+    EditSensorModalComponent,
+    StationReadingsComponent,
+    FilterReadingsForSensorPipe
 
   ],
   imports: [
@@ -118,7 +122,8 @@ import { EditSensorModalComponent } from "../sensors/components/edit-sensor-moda
     SensorTypesListComponent,
     EditSensorTypeModalComponent,
     SensorsListComponent,
-    EditSensorModalComponent
+    EditSensorModalComponent,
+    StationReadingsComponent
   ],
 })
 export class SharedModule {}

@@ -18,6 +18,7 @@ export class ViewStationComponent implements OnInit {
   sensorTypes$ = this.apiSensorsService.getSensorTypes()
 
 
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: MeteoStation,
     private apiSensorsService: ApiSensorsService,
