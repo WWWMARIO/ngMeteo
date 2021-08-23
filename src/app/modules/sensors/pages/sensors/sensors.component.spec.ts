@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from "@angular/fire";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "src/app/modules/shared/shared.module";
+import { environment } from "src/environments/environment";
 
 import { SensorsComponent } from './sensors.component';
 
@@ -11,7 +13,7 @@ describe('SensorsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({imports: [
       // ReactiveFormsModule,
-      // AngularFireModule.initializeApp(environment.firebase),
+      AngularFireModule.initializeApp(environment.firebase),
       SharedModule,
       //AppRoutingModule,
       // BrowserAnimationsModule

@@ -62,6 +62,14 @@
 <div class="flex-row" style="justify-content: space-between">
   <button
     *ngIf="data?.id"
+    mat-button
+    (click)="onDelete(this.data)"
+    color="warn"
+  >
+    <mat-icon mat-button>delete</mat-icon>
+  </button>
+  <button
+    *ngIf="data?.id"
     mat-raised-button
     (click)="updateStation()"
     color="primary"
@@ -78,14 +86,7 @@
   >
     Create new meteo station
   </button>
-  <button
-    *ngIf="data?.id"
-    mat-button
-    (click)="onDelete(this.data)"
-    color="warn"
-  >
-    <mat-icon mat-button>delete</mat-icon>
-  </button>
+
 </div>
 <!-- <mat-dialog-actions align="end">
    <button

@@ -6,13 +6,13 @@ import { SensorType } from "../../sensors/components/edit-sensor-type-modal/edit
 })
 export class GetSensorTypePipe implements PipeTransform {
 
-  transform(sensorTypeId: string, sensorTypes: SensorType[]): any {
+  transform(sensorTypeId: string, sensorTypes: SensorType[]): SensorType {
 
     if (!sensorTypeId) {
-      return '';
+      return null;
     }
     if (!sensorTypes) {
-      return '';
+      return null;
     }
    const sensorType = sensorTypes.find((sensorType)=> {
     return sensorType.id === sensorTypeId;

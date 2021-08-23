@@ -1,3 +1,4 @@
+import { SensorType } from "../../sensors/components/edit-sensor-type-modal/edit-sensor-type-modal.component";
 import { GetSensorTypePipe } from './get-sensor-type.pipe';
 
 describe('GetSensorTypePipe', () => {
@@ -5,7 +6,7 @@ describe('GetSensorTypePipe', () => {
 
   const firstTestId="kTzFZNYe45OCkIRWeI1X";
   const secondTestId="j4g7KV1qEtnGvj4ue4Zq";
-  const sensorTypesList = [
+  const sensorTypesList: SensorType[] = [
     {
       "type": "aaa",
       "unit": "aaaa",
@@ -33,18 +34,20 @@ describe('GetSensorTypePipe', () => {
   });
 
   it('fetches correct type for sensor id kTzFZNYe45OCkIRWeI1X', () => {
-    expect(pipe.transform(firstTestId,sensorTypesList)).toBe('speedd');
+    expect(pipe.transform(firstTestId,sensorTypesList)).toBe(sensorTypesList[2]);
   });
 
   it('fetches correct type for sensor id j4g7KV1qEtnGvj4ue4Zq', () => {
-    expect(pipe.transform(secondTestId,sensorTypesList)).toBe('Precipitation');
+    expect(pipe.transform(secondTestId,sensorTypesList)).toBe(sensorTypesList[1]);
   });
 
-  it('fetch empty strings when no sensor id provided', () => {
-    expect(pipe.transform(undefined,sensorTypesList)).toBe('');
+  it('fetch null when no sensor id provided', () => {
+    expect(pipe.transform(undefined,sensorTypesList)).toBe(null);
   });
 
-  it('fetch empty strings when no sensors list provided', () => {
-    expect(pipe.transform(firstTestId,undefined)).toBe('');
+  it('fetch null when no sensors list provided', () => {
+    expect(pipe.transform(firstTestId,undefined)).toBe(null);
   });
+
+
 });

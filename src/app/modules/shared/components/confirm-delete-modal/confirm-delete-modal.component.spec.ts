@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "../../shared.module";
 
@@ -19,7 +19,7 @@ describe('ConfirmDeleteModalComponent', () => {
     ],
       declarations: [ ConfirmDeleteModalComponent ],
       providers: [
-        // { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: MatDialogRef, useValue: {} }
       ],
     })

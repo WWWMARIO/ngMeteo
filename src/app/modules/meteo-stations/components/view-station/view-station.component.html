@@ -28,8 +28,8 @@
         alt="Photo of a station"
       />
       <mat-card-content>
-        <p>Latitude: {{ data.geoLocation.latitude }}</p>
-        <p>Longitude: {{ data.geoLocation.longitude }}</p>
+        <p>Latitude: {{ data?.geoLocation?.latitude }}</p>
+        <p>Longitude: {{ data?.geoLocation?.longitude }}</p>
       </mat-card-content>
       <!--  <mat-card-content *ngIf="readings$ | async as readings">
         <p *ngFor="let sensor of sensors$ | async">

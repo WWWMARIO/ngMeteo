@@ -13,7 +13,6 @@ export class SensorsComponent implements OnInit {
   constructor( private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.stationId)
   }
 
   onNew(stationId) {
