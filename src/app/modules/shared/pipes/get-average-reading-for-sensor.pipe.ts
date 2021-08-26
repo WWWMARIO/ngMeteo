@@ -8,6 +8,12 @@ import { Reading } from "../../readings/components/edit-readings/edit-readings.c
 export class GetAverageReadingForSensorPipe implements PipeTransform {
 
   transform(readings: Reading [], sensorId: string) {
+    if (!readings) {
+      return null
+    }
+    if (!sensorId) {
+      return null
+    }
     const readingsForSensor =  readings.filter((reading)=> {
       return reading.sensorId === sensorId
     })

@@ -10,6 +10,11 @@ export class GetLatestReadingForSensorPipe implements PipeTransform {
     if (!readings) {
       return null
     }
+    if (!sensorId) {
+      return null
+    }
+
+
     const readingsForSensor =  readings.filter((reading)=> {
       return reading.sensorId === sensorId
     })

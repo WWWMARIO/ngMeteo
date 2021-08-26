@@ -17,7 +17,6 @@ export class ReadingsListComponent implements OnInit {
   @Input() sensorId: string;
   @ViewChild(MatSort) sort: MatSort;
   readingsSub: Subscription;
-  x
 
   dataSource = new MatTableDataSource([]);
 
