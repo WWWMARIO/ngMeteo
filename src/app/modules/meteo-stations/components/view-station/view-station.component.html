@@ -48,7 +48,7 @@
       <mat-card-content *ngIf="readings$ | async as readings">
         <div *ngFor="let sensor of sensors$ | async" class="flex-row">
           {{ sensor.description }}:{{
-            (readings | getLatestReadingForSensor: sensor.id)?.value
+            (readings | getLatestReadingForSensor: sensor.id)?.value | number: "1.2-2"
           }}
           {{
             (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
@@ -74,7 +74,7 @@
         <div *ngFor="let sensor of sensors$ | async" class="flex-column">
           <p class="flex-row">
             Min {{ sensor.description | lowercase }}:{{
-              (readings | getLowestReadingForSensor: sensor.id)?.value
+              (readings | getLowestReadingForSensor: sensor.id)?.value | number: "1.2-2"
             }}
             {{
               (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
@@ -90,7 +90,7 @@
 
           <p class="flex-row">
             Max {{ sensor.description | lowercase }}:{{
-              (readings | getHighestReadingForSensor: sensor.id)?.value
+              (readings | getHighestReadingForSensor: sensor.id)?.value | number: "1.2-2"
             }}
             {{
               (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit

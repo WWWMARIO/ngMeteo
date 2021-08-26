@@ -42,7 +42,7 @@
       placeholder="Latitude"
     />
     <mat-error *ngIf="meteoStationForm.controls.latitude.hasError('required')">
-      Please enter your latitude
+      Please enter latitude
     </mat-error>
   </mat-form-field>
   <mat-form-field>
@@ -54,7 +54,7 @@
       placeholder="Longitude"
     />
     <mat-error *ngIf="meteoStationForm.controls.longitude.hasError('required')">
-      Please enter your longitude
+      Please enter longitude
     </mat-error>
   </mat-form-field>
 
@@ -65,6 +65,8 @@
     mat-button
     (click)="onDelete(this.data)"
     color="warn"
+    id="deleteMeteoStation"
+
   >
     <mat-icon mat-button>delete</mat-icon>
   </button>
@@ -73,7 +75,8 @@
     mat-raised-button
     (click)="updateStation()"
     color="primary"
-    [disabled]="loading"
+    [disabled]="loading || meteoStationForm.invalid"
+    id="updateMeteoStation"
   >
     Update meteo station
   </button>
@@ -82,51 +85,10 @@
     mat-raised-button
     (click)="newStation()"
     color="primary"
-    [disabled]="loading"
+    [disabled]="loading || meteoStationForm.invalid"
+    id="createNewMeteoStation"
   >
     Create new meteo station
   </button>
 
 </div>
-<!-- <mat-dialog-actions align="end">
-   <button
-   *ngIf="data?.id"
-   mat-raised-button
-   (click)="updateStation()"
-   color="primary"
-   [disabled]="loading"
- >
-   Update meteo station
- </button>
- <button
-   *ngIf="!data?.id"
-   mat-raised-button
-   (click)="newStation()"
-   color="primary"
-   [disabled]="loading"
- >
-   Create new meteo station
- </button>
- <button
-   *ngIf="data?.id"
-   mat-button
-   (click)="onDelete(this.data)"
-   color="warn"
- >
-   <mat-icon mat-button>delete</mat-icon>
- </button>
-
- </mat-dialog-actions> -->
-
-<!--   <div>
-    <button mat-raised-button (click)="onSignUp()" color="primary">
-      Log in
-    </button>
-  </div> -->
-
-<!-- <mat-card style="margin: 20px">
-  <mat-card-header>
-    <mat-card-title style="margin: 30px">User orders</mat-card-title>
-  </mat-card-header>
-  <app-orders-list [orders$]="userOrders$"></app-orders-list>
-</mat-card> -->

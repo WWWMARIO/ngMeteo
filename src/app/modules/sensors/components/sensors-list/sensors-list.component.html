@@ -21,7 +21,7 @@
   <ng-container matColumnDef="sensorTypeId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Sensor type</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async)).type}}
+      {{ (sensor?.sensorTypeId | getSensorType: (sensorTypes$ | async))?.type}}
     </td>
   </ng-container>
  <!--  <ng-container *ngIf="!this.stationId" matColumnDef="stationId">

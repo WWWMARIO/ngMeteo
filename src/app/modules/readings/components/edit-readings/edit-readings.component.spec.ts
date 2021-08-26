@@ -73,6 +73,7 @@ describe('EditReadingsComponent', () => {
     const sensorId = component.readingForm.controls.sensorId;
     sensorId.setValue('31wLXK7Bg59pXvVikvgO');
     fixture.detectChanges();
+    // console.log(component.readingForm)
     expect(component.readingForm.invalid).toBeTruthy();
   });
 

@@ -25,6 +25,7 @@ export class EditReadingsComponent implements OnInit {
   sensorTypes$: Observable<any[]>;
   stations$: Observable<any[]>;
   loading = false;
+  regexDecimalValidator = Validators.pattern(/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/)
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -39,27 +40,27 @@ export class EditReadingsComponent implements OnInit {
     this.sensors$ = this.apiSensorsService.getSensors();
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes();
     this.stations$ = this.apiStationsService.getMeteoStations();
-    console.log(this.data)
+    // console.log(this.data)
     if (this.data.newReadingSensorid) {
       this.readingForm = this.formBuilder.group({
-        value: ['', [Validators.required]],
+        value: ['', [Validators.required, this.regexDecimalValidator] ],
         sensorId: [this.data.newReadingSensorid, [Validators.required]],
       });
     }  else if (this.data) {
       this.readingForm = this.formBuilder.group({
-        value: [this.data.value, [Validators.required]],
+        value: [this.data.value, [Validators.required, this.regexDecimalValidator] ],
         sensorId: [this.data.sensorId, [Validators.required]],
       });
     } else {
       this.readingForm = this.formBuilder.group({
-        value: ['', [Validators.required]],
+        value: ['', [Validators.required, this.regexDecimalValidator], ],
         sensorId: ['', [Validators.required]]
       });
     }
   }
 
   async newReading() {
-    console.log(this.readingForm)
+    // console.log(this.readingForm)
     if (this.readingForm.valid) {
       console.log(this.readingForm.value);
       const newReading = {
@@ -85,7 +86,7 @@ export class EditReadingsComponent implements OnInit {
   }
 
   async updateReading() {
-    console.log(this.readingForm)
+    // console.log(this.readingForm)
     if (this.readingForm.valid) {
       console.log(this.readingForm.value);
       const updatedReading = {

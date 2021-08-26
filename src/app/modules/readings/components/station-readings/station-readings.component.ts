@@ -22,7 +22,7 @@ export class StationReadingsComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.stationId)
+    // console.log(this.stationId)
     this.sensors$ = this.apiSensorsService.getSensorsForStation(this.stationId);
   }
 

@@ -13,7 +13,7 @@
       </mat-panel-title>
       <mat-panel-description *ngIf="readings$ | async as read">
         <span style="margin-left: auto;">{{
-          (read | getLatestReadingForSensor: sensor.id)?.value
+          (read | getLatestReadingForSensor: sensor.id)?.value | number: "1.2-2"
         }}
       </span>
       {{

@@ -59,7 +59,7 @@ export class EditSensorModalComponent implements OnInit {
   }
 
   async newSensor() {
-    console.log(this.sensorForm.value)
+    // console.log(this.sensorForm.value)
     if (this.sensorForm.valid) {
       console.log(this.sensorForm.value);
       const newSensor = {
@@ -88,7 +88,7 @@ export class EditSensorModalComponent implements OnInit {
 
   async updateSensor() {
     if (this.sensorForm.valid) {
-      console.log(this.sensorForm.value);
+      // console.log(this.sensorForm.value);
       const updatedSensor = {
         upperLimit: this.sensorForm.value.upperLimit,
         lowerLimit: this.sensorForm.value.lowerLimit,

@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AgmCoreModule } from "@agm/core";
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "src/app/modules/shared/shared.module";
@@ -15,6 +16,7 @@ describe('WelcomeComponent', () => {
       // ReactiveFormsModule,
       AngularFireModule.initializeApp(environment.firebase),
       SharedModule,
+      // AgmCoreModule
       //AppRoutingModule,
       // BrowserAnimationsModule
     ],
@@ -41,4 +43,33 @@ describe('WelcomeComponent', () => {
     let btn = fixture.debugElement.query(By.css('#loginBtn'))
     expect(btn).toBeTruthy();
   });
+
+  it('should contain header', () => {
+    let header = fixture.debugElement.query(By.css('.header')).nativeElement
+    expect(header.textContent).toContain('International Education Program Veleri-OI IoT School');
+    expect(header).toBeTruthy();
+  });
+
+  it('should contain subheader', () => {
+    let subheader = fixture.debugElement.query(By.css('.subheader')).nativeElement
+    expect(subheader.textContent).toContain('Case study of the IoT project "Cov protect System');
+    expect(subheader).toBeTruthy();
+  });
+
+  /* it('should contain map ', async () => {
+    fixture.whenStable().then(async () => {
+      fixture.detectChanges();
+      let map = fixture.debugElement.query(By.css('agm-map'))
+      console.log(map)
+      expect(map).toBeTruthy();
+    });
+  }); */
+
+  it('runs login on login button click', fakeAsync(() => {
+    spyOn(component, 'login');
+    let button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    tick();
+    expect(component.login).toHaveBeenCalled();
+  }));
 });

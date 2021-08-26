@@ -29,7 +29,7 @@ export class SensorTypesListComponent implements OnInit {
 
 
   editSensorType(sensorType) {
-    console.log(sensorType)
+    // console.log(sensorType)
     const dialogRef = this.dialog.open(EditSensorTypeModalComponent, {
       data:  sensorType,
       // height: '90%',

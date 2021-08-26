@@ -16,6 +16,7 @@ import { MeteoStation } from "../../pages/meteo-stations/meteo-stations.componen
 export class EditMeteoStationModalComponent implements OnInit {
   meteoStationForm: FormGroup;
   loading = false;
+  regexDecimalValidator = Validators.pattern(/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/)
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data,
@@ -28,37 +29,37 @@ export class EditMeteoStationModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data)
+    // console.log(this.data)
     if (this.data?.id) {
       this.meteoStationForm = this.formBuilder.group({
         name: [this.data.name, [Validators.required]],
         imageUrl: [this.data.imageUrl, [Validators.required]],
         description: [this.data.description, [Validators.required]],
-        longitude: [this.data.geoLocation.longitude, [Validators.required]],
-        latitude: [this.data.geoLocation.latitude, [Validators.required]],
+        longitude: [this.data.geoLocation.longitude, [Validators.required, Validators.min(-180), Validators.max(180), this.regexDecimalValidator]],
+        latitude: [this.data.geoLocation.latitude, [Validators.required, Validators.min(-90), Validators.max(90), this.regexDecimalValidator]],
       });
     } else if (this.data?.latitude && this.data?.longitude) {
       this.meteoStationForm = this.formBuilder.group({
         name: ['', [Validators.required]],
         imageUrl: ['', [Validators.required]],
         description: ['', [Validators.required]],
-        longitude: [this.data.longitude, [Validators.required]],
-        latitude: [this.data.latitude, [Validators.required]],
+        longitude: [this.data.longitude, [Validators.required, Validators.min(-180), Validators.max(180), this.regexDecimalValidator]],
+        latitude: [this.data.latitude, [Validators.required, Validators.min(-90), Validators.max(90), this.regexDecimalValidator]],
       });
     } else {
       this.meteoStationForm = this.formBuilder.group({
         name: ['', [Validators.required]],
         imageUrl: ['', [Validators.required]],
         description: ['', [Validators.required]],
-        longitude: ['', [Validators.required]],
-        latitude: ['', [Validators.required]],
+        longitude: ['', [Validators.required, Validators.min(-180), Validators.max(180), this.regexDecimalValidator]],
+        latitude: ['', [Validators.required, Validators.min(-90), Validators.max(90), this.regexDecimalValidator]],
       });
     }
   }
 
   async updateStation() {
     if (this.meteoStationForm.valid) {
-      console.log(this.meteoStationForm.value);
+      // console.log(this.meteoStationForm.value);
       const updatedMeteoStation = {
         name: this.meteoStationForm.value.name,
         description: this.meteoStationForm.value.description,
@@ -88,7 +89,7 @@ export class EditMeteoStationModalComponent implements OnInit {
 
   async newStation() {
     if (this.meteoStationForm.valid) {
-      console.log(this.meteoStationForm.value);
+      // console.log(this.meteoStationForm.value);
       const newMeteoStation = {
         name: this.meteoStationForm.value.name,
         description: this.meteoStationForm.value.description,
@@ -113,7 +114,7 @@ export class EditMeteoStationModalComponent implements OnInit {
   }
 
   onDelete(meteoStation: MeteoStation) {
-    console.log(meteoStation)
+    // console.log(meteoStation)
     const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
       data: {message: `Are you sure you want do delete station ${meteoStation.name}?`}
       // height: '90%',

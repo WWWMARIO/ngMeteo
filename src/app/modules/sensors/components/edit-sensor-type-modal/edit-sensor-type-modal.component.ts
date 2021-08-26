@@ -30,7 +30,7 @@ export class EditSensorTypeModalComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data) {
-      console.log(this.data);
+      // console.log(this.data);
       this.sensorTypeForm = this.formBuilder.group({
         type: [this.data.type, [Validators.required]],
         unit: [this.data.unit, [Validators.required]]
@@ -49,7 +49,7 @@ export class EditSensorTypeModalComponent implements OnInit {
 
   async newSensorType() {
     if (this.sensorTypeForm.valid) {
-      console.log(this.sensorTypeForm.value);
+      // console.log(this.sensorTypeForm.value);
       const newSensorType = {
         type: this.sensorTypeForm.value.type,
         unit: this.sensorTypeForm.value.unit
@@ -72,7 +72,7 @@ export class EditSensorTypeModalComponent implements OnInit {
 
   async updateSensorType() {
     if (this.sensorTypeForm.valid) {
-      console.log(this.sensorTypeForm.value);
+      // console.log(this.sensorTypeForm.value);
       const updatedSensorType = {
         type: this.sensorTypeForm.value.type,
         unit: this.sensorTypeForm.value.unit

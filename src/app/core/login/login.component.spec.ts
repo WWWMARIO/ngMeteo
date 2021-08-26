@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire";
 import { MatDialogRef } from "@angular/material/dialog";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -95,5 +95,27 @@ describe('LoginComponent', () => {
     expect(component.logInForm.valid).toBeTruthy();
     let btn = fixture.debugElement.query(By.css('button[type=submit]'));
     expect(btn.nativeElement.disabled).toBeFalsy();
+  }));
+
+
+  it('logs in when form is filled and login button is clicked', fakeAsync(() => {
+    const email = component.logInForm.controls.email;
+    email.setValue('test@test.com');
+    const password = component.logInForm.controls.password;
+    password.setValue('123456');
+    fixture.detectChanges();
+    spyOn(component, 'onLogIn');
+    let button = fixture.debugElement.query(By.css('#loginBtn')).nativeElement;
+    button.click();
+    tick();
+    expect(component.onLogIn).toHaveBeenCalled();
+  }));
+
+  it('cancels when on cancel button is clicked', fakeAsync(() => {
+    spyOn(component, 'onCancel');
+    let btn = fixture.debugElement.query(By.css('#cancelBtn')).nativeElement;
+    btn.click();
+    tick();
+    expect(component.onCancel).toHaveBeenCalled();
   }));
 });

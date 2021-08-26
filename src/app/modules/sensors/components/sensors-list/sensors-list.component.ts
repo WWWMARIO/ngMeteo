@@ -42,7 +42,7 @@ export class SensorsListComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.stationId)
+    // console.log(this.stationId)
     // this.stations$ = this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
     this.stations$ = this.apiStationsService.getMeteoStations();
     //  = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
