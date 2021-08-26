@@ -6,7 +6,13 @@ import { Reading } from "../../readings/components/edit-readings/edit-readings.c
 })
 export class FilterReadingsForSensorPipe implements PipeTransform {
 
-  transform(readings: Reading [], sensorId: string) {
+  transform(readings: Reading [], sensorId: string) : any{
+    if (!readings) {
+      return null
+    }
+    if (!sensorId) {
+      return null
+    }
     return readings.filter((reading)=> {
       return reading.sensorId === sensorId
     })
