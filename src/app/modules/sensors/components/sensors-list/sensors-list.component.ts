@@ -28,6 +28,7 @@ export class SensorsListComponent implements OnInit {
     'upperLimit',
     'description',
     'sensorTypeId',
+    'id',
     // 'stationId',
     'review'
   ];

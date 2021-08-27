@@ -25,7 +25,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { GetLatestReadingForSensorPipe } from './pipes/get-latest-reading-for-sensor.pipe';
 import { ViewStationComponent } from '../meteo-stations/components/view-station/view-station.component';
-import { ReadingsComponent } from "../readings/pages/readings/readings.component";
 import { ReadingsListComponent } from "../readings/components/readings-list/readings-list.component";
 import { EditReadingsComponent } from "../readings/components/edit-readings/edit-readings.component";
 import { EditMeteoStationModalComponent } from "../meteo-stations/components/edit-meteo-station-modal/edit-meteo-station-modal.component";
@@ -49,7 +48,6 @@ import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.
     GetStationNamePipe,
     GetLatestReadingForSensorPipe,
     ViewStationComponent,
-    ReadingsComponent,
     ReadingsListComponent,
     EditReadingsComponent,
     EditMeteoStationModalComponent,
@@ -114,7 +112,6 @@ import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.
     GetLatestReadingForSensorPipe,
     MatButtonToggleModule,
     ViewStationComponent,
-    ReadingsComponent,
     ReadingsListComponent,
     EditReadingsComponent,
     EditMeteoStationModalComponent,

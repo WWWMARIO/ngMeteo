@@ -56,10 +56,10 @@ describe('ShellComponent', () => {
     expect(link).toBeTruthy();
   });
 
-  it('should contain link to readings', () => {
+  /* it('should contain link to readings', () => {
     let link = fixture.debugElement.query(By.css('#linkToReadings'))
     expect(link).toBeTruthy();
-  });
+  }); */
 
 
 });

@@ -399,7 +399,7 @@ const testData = [
   },
 ];
 
-fdescribe('FilterReadingsForSensorPipe', () => {
+describe('FilterReadingsForSensorPipe', () => {
   const pipe = new FilterReadingsForSensorPipe();
   it('create an instance', () => {
     expect(pipe).toBeTruthy();

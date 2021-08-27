@@ -40,15 +40,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'readings',
-        canActivate: [AngularFireAuthGuard],
-        data: { authGuardPipe: redirectUnauthorizedToWelcome },
-        loadChildren: () =>
-          import('./modules/readings/readings.module').then(
-            (m) => m.ReadingsModule
-          ),
-      },
-      {
         path: 'map',
         canActivate: [AngularFireAuthGuard],
         data: { authGuardPipe: redirectUnauthorizedToWelcome },

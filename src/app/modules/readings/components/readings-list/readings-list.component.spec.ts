@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire";
-import { MatDialogRef } from "@angular/material/dialog";
 import { Subject } from "rxjs";
 import { SharedModule } from "src/app/modules/shared/shared.module";
 import { environment } from "src/environments/environment";

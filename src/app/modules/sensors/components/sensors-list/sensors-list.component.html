@@ -1,9 +1,8 @@
 <table mat-table [dataSource]="dataSource" matSort>
-
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ sensor.description}}
+      {{ sensor.description }}
     </td>
   </ng-container>
   <ng-container matColumnDef="lowerLimit">
@@ -14,29 +13,27 @@
   <ng-container matColumnDef="upperLimit">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Upper limit</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ sensor.upperLimit}}
+      {{ sensor.upperLimit }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="sensorTypeId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Sensor type</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ (sensor?.sensorTypeId | getSensorType: (sensorTypes$ | async))?.type}}
+      {{ (sensor?.sensorTypeId | getSensorType: (sensorTypes$ | async))?.type }}
     </td>
   </ng-container>
- <!--  <ng-container *ngIf="!this.stationId" matColumnDef="stationId">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Station</th>
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sensor id</th>
     <td mat-cell *matCellDef="let sensor">
-      {{ sensor.stationId | getStationName: (stations$ | async)}}
+      {{ sensor.id }}
     </td>
-  </ng-container> -->
+  </ng-container>
 
   <ng-container matColumnDef="review">
-    <th mat-header-cell *matHeaderCellDef><!-- Review --></th>
-    <td mat-cell *matCellDef="let sensor" style="text-align: end; ">
-      <!-- <button mat-button color="primary" (click)="viewReadings(sensor)">
-        <mat-icon>article</mat-icon>
-      </button> -->
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let sensor" style="text-align: end">
       <button mat-button color="primary" (click)="viewSensorDetails(sensor)">
         <mat-icon>edit</mat-icon>
       </button>
@@ -45,11 +42,6 @@
       </button>
     </td>
   </ng-container>
-
-
-
-
-
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
