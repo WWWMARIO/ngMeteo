@@ -38,6 +38,7 @@ import { EditSensorModalComponent } from "../sensors/components/edit-sensor-moda
 import { StationReadingsComponent } from "../readings/components/station-readings/station-readings.component";
 import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.pipe';
 import { SensorsComponent } from "../sensors/pages/sensors/sensors.component";
+import { StationOverviewComponent } from "../meteo-stations/components/station-overview/station-overview.component";
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SensorsComponent } from "../sensors/pages/sensors/sensors.component";
     EditSensorModalComponent,
     StationReadingsComponent,
     FilterReadingsForSensorPipe,
-    SensorsComponent
+    SensorsComponent,
+    StationOverviewComponent
 
   ],
   imports: [
@@ -119,7 +121,8 @@ import { SensorsComponent } from "../sensors/pages/sensors/sensors.component";
     SensorsListComponent,
     EditSensorModalComponent,
     StationReadingsComponent,
-    SensorsComponent
+    SensorsComponent,
+    StationOverviewComponent
   ],
 })
 export class SharedModule {}

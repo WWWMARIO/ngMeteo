@@ -1,0 +1,111 @@
+<div class="flex-row card-row">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--  <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>{{ data?.name }}</mat-card-title>
+      <mat-card-subtitle>{{ data?.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      class="card-image"
+      mat-card-image
+      [src]="data?.imageUrl"
+      alt="Photo of a station"
+    />
+    <mat-card-content>
+      <p>Latitude: {{ data?.geoLocation?.latitude }}</p>
+      <p>Longitude: {{ data?.geoLocation?.longitude }}</p>
+      <p>Meteo station id: {{ data?.id }}</p>
+    </mat-card-content>
+    <!--  <mat-card-content *ngIf="readings$ | async as readings">
+      <p *ngFor="let sensor of sensors$ | async">
+        {{ sensor.description }}:{{
+          (readings | getLatestReadingForSensor: sensor.id).value
+        }}
+      </p>
+    </mat-card-content> -->
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--  <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>Posljednja očitanja</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="readings$ | async as readings">
+      <div *ngFor="let sensor of sensors$ | async" class="flex-row">
+        {{ sensor.description }}:{{
+          (readings | getLatestReadingForSensor: sensor.id)?.value | number: "1.2-2"
+        }}
+        {{
+          (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
+        }}
+        <span style="margin-left: auto">
+          {{
+            (
+              readings | getLatestReadingForSensor: sensor.id
+            )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+          }}
+        </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div class="flex-row card-row" style="margin-top: 3%">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--  <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>Ekstremna očitanja</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="readings$ | async as readings">
+      <div *ngFor="let sensor of sensors$ | async" class="flex-column">
+        <p class="flex-row">
+          Min {{ sensor.description | lowercase }}:{{
+            (readings | getLowestReadingForSensor: sensor.id)?.value | number: "1.2-2"
+          }}
+          {{
+            (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
+          }}
+          <span style="margin-left: auto">
+            {{
+              (
+                readings | getLowestReadingForSensor: sensor.id
+              )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+            }}
+          </span>
+        </p>
+
+        <p class="flex-row">
+          Max {{ sensor.description | lowercase }}:{{
+            (readings | getHighestReadingForSensor: sensor.id)?.value | number: "1.2-2"
+          }}
+          {{
+            (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
+          }}
+          <span style="margin-left: auto">
+            {{
+              (
+                readings | getHighestReadingForSensor: sensor.id
+              )?.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss"
+            }}
+          </span>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <!--  <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>Prosječna očitanja</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="readings$ | async as readings">
+      <div *ngFor="let sensor of sensors$ | async" class="flex-row">
+        Average {{ sensor.description | lowercase }}:{{
+          readings | getAverageReadingForSensor: sensor.id | number: "1.2-2"
+        }}
+        {{
+          (sensor.sensorTypeId | getSensorType: (sensorTypes$ | async))?.unit
+        }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
