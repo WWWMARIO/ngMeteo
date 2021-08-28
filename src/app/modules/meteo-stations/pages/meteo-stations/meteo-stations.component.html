@@ -20,13 +20,15 @@
   </div>
 </div>
 <div class="flex-row" style="flex-wrap: wrap;">
-<div class="card" *ngFor="let meteoStation of meteoStations$ | async" style="margin:15px" (click)="onClickStation(meteoStation)">
+  <ng-container *ngIf="meteoStations$ | async as meteoStations">
+<div class="card" *ngFor="let meteoStation of meteoStations" style="margin:15px" (click)="onClickStation(meteoStation)">
   <img [src]="meteoStation.imageUrl" style="width:200px; height:200px " alt="image" >
   <div class="container">
     <h3>{{ meteoStation.name }}</h3>
     <p>{{ meteoStation.description }}</p>
   </div>
 </div>
+</ng-container>
 </div>
 
 

@@ -16,7 +16,6 @@ import { EditSensorModalComponent } from "../edit-sensor-modal/edit-sensor-modal
 })
 export class SensorsListComponent implements OnInit {
   @Input() stationId;
-  @ViewChild(MatSort) sort: MatSort;
   sensorTypes$: Observable<any[]>;
   stations$: Observable<any[]>;
 
@@ -48,13 +47,12 @@ export class SensorsListComponent implements OnInit {
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
     if (this.stationId) {
       this.sensorsSub = this.apiSensorsService.getSensorsForStation(this.stationId).subscribe((response)=>{
+        console.log(response)
         this.dataSource.data = response;
-        this.dataSource.sort = this.sort;
       });
     } else {
       this.sensorsSub = this.apiSensorsService.getSensors().subscribe((response)=>{
         this.dataSource.data = response;
-        this.dataSource.sort = this.sort;
       });
     }
   }
