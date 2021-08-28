@@ -1,7 +1,12 @@
 <div class="header">International Education Program Veleri-OI IoT School</div>
 <div class="subheader">Case study of the IoT project "Cov protect System"</div>
-<div class="flex-row">
-  <!-- <h1>Meteo stations</h1> -->
+<div class="flex-row" style="margin-bottom:20px">
+
+  <mat-button-toggle-group [(ngModel)]="route" style="margin-left:20px">
+    <mat-button-toggle id="mapLink" value="map" routerLink="/map"><mat-icon >room</mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle id="listLink" value="list"routerLink="/meteo-stations"><mat-icon >list</mat-icon></mat-button-toggle>
+  </mat-button-toggle-group>
   <div style="margin-left: auto">
     <button
       style="margin-right: 20px; margin-top: 5px; margin-bottom: 5px"
@@ -9,6 +14,7 @@
       color="accent"
       mat-mini-fab
       matTooltip="Add new meteo station"
+      id="newBtn"
     >
       <mat-icon>add</mat-icon>
     </button>

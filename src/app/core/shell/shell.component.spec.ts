@@ -41,12 +41,12 @@ describe('ShellComponent', () => {
     expect(btn).toBeTruthy();
   });
 
-  it('should contain sidebar', () => {
+ /*  it('should contain sidebar', () => {
     let sidenav = fixture.debugElement.query(By.css('mat-sidenav'))
     expect(sidenav).toBeTruthy();
   });
-
-  it('should contain link to stations', () => {
+ */
+ /*  it('should contain link to stations', () => {
     let link = fixture.debugElement.query(By.css('#linkToStation'))
     expect(link).toBeTruthy();
   });
@@ -54,7 +54,7 @@ describe('ShellComponent', () => {
   it('should contain link to sensors', () => {
     let link = fixture.debugElement.query(By.css('#linkToSensors'))
     expect(link).toBeTruthy();
-  });
+  }); */
 
   /* it('should contain link to readings', () => {
     let link = fixture.debugElement.query(By.css('#linkToReadings'))

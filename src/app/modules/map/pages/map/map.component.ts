@@ -16,6 +16,8 @@ export class MapComponent implements OnInit {
   map: google.maps.Map;
   mapClickListener ;
 
+  route = 'map'
+
 
 
   constructor(
@@ -46,15 +48,6 @@ export class MapComponent implements OnInit {
     });
   }
 
- /*  onClickStation(station) {
-    // const dialogRef = this.dialog.open(ViewStationComponent, {
-    //   panelClass: 'custom-dialog-container',
-    //   data:  station,
-//
-    //   // height: '90%',
-    // });
-    console.log(station)
-  } */
   onClickMap(lat: number, long: number) {
     const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
       data:  {latitude: lat, longitude: long },
@@ -63,9 +56,6 @@ export class MapComponent implements OnInit {
       panelClass: 'custom-dialog-container',
     });
   }
-
-
-
 
   public mapReadyHandler(map: google.maps.Map): void {
     this.map = map;

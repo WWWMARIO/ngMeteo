@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShellComponent } from './core/shell/shell.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "src/environments/environment";
 import { SharedModule } from "./modules/shared/shared.module";
@@ -18,8 +17,8 @@ import { AgmCoreModule } from "@agm/core";
   declarations: [
     AppComponent,
     ShellComponent,
-    PageNotFoundComponent,
     LoginComponent
+
 
   ],
   imports: [

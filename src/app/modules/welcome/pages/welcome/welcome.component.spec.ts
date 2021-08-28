@@ -47,13 +47,11 @@ describe('WelcomeComponent', () => {
   it('should contain header', () => {
     let header = fixture.debugElement.query(By.css('.header')).nativeElement
     expect(header.textContent).toContain('International Education Program Veleri-OI IoT School');
-    expect(header).toBeTruthy();
   });
 
   it('should contain subheader', () => {
     let subheader = fixture.debugElement.query(By.css('.subheader')).nativeElement
     expect(subheader.textContent).toContain('Case study of the IoT project "Cov protect System');
-    expect(subheader).toBeTruthy();
   });
 
   /* it('should contain map ', async () => {

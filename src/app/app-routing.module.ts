@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { ShellComponent } from './core/shell/shell.component';
 import {
   AngularFireAuthGuard,
@@ -8,9 +7,7 @@ import {
 } from '@angular/fire/auth-guard';
 import { WelcomeComponent } from './modules/welcome/pages/welcome/welcome.component';
 
-/* const routes: Routes = [
-  { path: 'meteoStations', loadChildren: () => import('./modules/meteo-station/meteo-station.module').then(m => m.MeteoStationModule) },
-  { path: 'welcome', loadChildren: () => import('./modules/welcome/welcome.module').then(m => m.WelcomeModule) }]; */
+
 
 const redirectUnauthorizedToWelcome = () => redirectUnauthorizedTo(['welcome']);
 
@@ -31,15 +28,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'sensors',
-        canActivate: [AngularFireAuthGuard],
-        data: { authGuardPipe: redirectUnauthorizedToWelcome },
-        loadChildren: () =>
-          import('./modules/sensors/sensors.module').then(
-            (m) => m.SensorsModule
-          ),
-      },
-      {
         path: 'map',
         canActivate: [AngularFireAuthGuard],
         data: { authGuardPipe: redirectUnauthorizedToWelcome },
@@ -57,7 +45,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    component: PageNotFoundComponent,
+    redirectTo: 'meteo-stations'
   },
 ];
 

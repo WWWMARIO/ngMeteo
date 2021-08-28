@@ -31,18 +31,17 @@ import { EditMeteoStationModalComponent } from "../meteo-stations/components/edi
 import { GetHighestReadingForSensorPipe } from './pipes/get-highest-reading-for-sensor.pipe';
 import { GetLowestReadingForSensorPipe } from './pipes/get-lowest-reading-for-sensor.pipe';
 import { GetAverageReadingForSensorPipe } from './pipes/get-average-reading-for-sensor.pipe';
-import { SensorsComponent } from "../sensors/pages/sensors/sensors.component";
 import { SensorTypesListComponent } from "../sensors/components/sensor-types-list/sensor-types-list.component";
 import { EditSensorTypeModalComponent } from "../sensors/components/edit-sensor-type-modal/edit-sensor-type-modal.component";
 import { SensorsListComponent } from "../sensors/components/sensors-list/sensors-list.component";
 import { EditSensorModalComponent } from "../sensors/components/edit-sensor-modal/edit-sensor-modal.component";
 import { StationReadingsComponent } from "../readings/components/station-readings/station-readings.component";
 import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.pipe';
+import { SensorsComponent } from "../sensors/pages/sensors/sensors.component";
 
 
 @NgModule({
   declarations: [
-    /* OrdersListComponent, FilterMenuByCategoryPipe */
     ConfirmDeleteModalComponent,
     GetSensorTypePipe,
     GetStationNamePipe,
@@ -54,13 +53,13 @@ import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.
     GetHighestReadingForSensorPipe,
     GetLowestReadingForSensorPipe,
     GetAverageReadingForSensorPipe,
-    SensorsComponent,
     SensorTypesListComponent,
     EditSensorTypeModalComponent,
     SensorsListComponent,
     EditSensorModalComponent,
     StationReadingsComponent,
-    FilterReadingsForSensorPipe
+    FilterReadingsForSensorPipe,
+    SensorsComponent
 
   ],
   imports: [
@@ -115,12 +114,12 @@ import { FilterReadingsForSensorPipe } from './pipes/filter-readings-for-sensor.
     ReadingsListComponent,
     EditReadingsComponent,
     EditMeteoStationModalComponent,
-    SensorsComponent,
     SensorTypesListComponent,
     EditSensorTypeModalComponent,
     SensorsListComponent,
     EditSensorModalComponent,
-    StationReadingsComponent
+    StationReadingsComponent,
+    SensorsComponent
   ],
 })
 export class SharedModule {}

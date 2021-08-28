@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
-import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from "@angular/material/dialog";
 import { EditMeteoStationModalComponent } from "../../components/edit-meteo-station-modal/edit-meteo-station-modal.component";
 import { ConfirmDeleteModalComponent } from "src/app/modules/shared/components/confirm-delete-modal/confirm-delete-modal.component";
 import { ApiStationsService } from "../../api-stations.service";
+import { ViewStationComponent } from "../../components/view-station/view-station.component";
 
 export interface MeteoStation {
+
   id: string;
   name: string;
   description: string;
@@ -23,6 +24,7 @@ export interface MeteoStation {
   styleUrls: ['./meteo-stations.component.scss']
 })
 export class MeteoStationsComponent implements OnInit {
+  route = 'list'
 
   panelOpenState = false;
   meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
@@ -39,30 +41,14 @@ export class MeteoStationsComponent implements OnInit {
       // height: '90%',
       width: '90%',
     });
-    /* dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    }); */
   }
 
-
-  onEdit(meteoStation: MeteoStation) {
-    const dialogRef = this.dialog.open(EditMeteoStationModalComponent, {
+  onClickStation(meteoStation: MeteoStation) {
+    const dialogRef = this.dialog.open(ViewStationComponent, {
       data:  meteoStation,
-      // height: '90%',
+      height: '90%',
       width: '90%',
-    });
-  }
-
-  onDelete(meteoStation: MeteoStation) {
-    const dialogRef = this.dialog.open(ConfirmDeleteModalComponent, {
-      // height: '90%',
-      // width: '90%',
-    });
-    dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
-      if (confirmDelete) {
-        // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
-        this.apiStationsService.deleteMeteoStation(meteoStation.id);
-      }
+      panelClass: 'custom-dialog-container',
     });
   }
 
