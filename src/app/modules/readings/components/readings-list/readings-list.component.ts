@@ -1,7 +1,6 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { Observable, Subscription } from "rxjs";
 import { ConfirmDeleteModalComponent } from "src/app/modules/shared/components/confirm-delete-modal/confirm-delete-modal.component";
@@ -15,7 +14,6 @@ import { EditReadingsComponent } from "../edit-readings/edit-readings.component"
 export class ReadingsListComponent implements OnInit {
   @Input() readings$: Observable<any[]>;
   @Input() sensorId: string;
-  @ViewChild(MatSort) sort: MatSort;
   readingsSub: Subscription;
 
   dataSource = new MatTableDataSource([]);
@@ -23,7 +21,6 @@ export class ReadingsListComponent implements OnInit {
   displayedColumns: string[] = [
     'value',
     'timeStamp',
-    'sensorId',
     'details'
   ];
 
@@ -32,17 +29,16 @@ export class ReadingsListComponent implements OnInit {
     private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    // this.apiItemsService.getItems().subscribe();
     this.readingsSub = this.readings$.subscribe((response: any[]) => {
       if (this.sensorId) {
         this.dataSource.data =  response.filter((reading)=> {
           return reading.sensorId === this.sensorId
         })
+        console.log(this.dataSource.data)
       } else {
         this.dataSource.data = response;
       }
 
-      this.dataSource.sort = this.sort;
     });
   }
 
@@ -68,6 +64,9 @@ export class ReadingsListComponent implements OnInit {
       }
     });
   }
+
+
+
 
 
 

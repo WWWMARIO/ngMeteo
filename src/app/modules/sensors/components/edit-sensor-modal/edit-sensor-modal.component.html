@@ -66,6 +66,7 @@
     (click)="newSensor()"
     color="primary"
     [disabled]="sensorForm.invalid || loading"
+    id="createNewBtn"
   >
     Create new sensor
   </button>
@@ -76,6 +77,7 @@
     (click)="updateSensor()"
     color="primary"
     [disabled]="sensorForm.invalid || loading"
+    id="updateBtn"
   >
     Update sensor
   </button>

@@ -1,26 +1,21 @@
-<table mat-table [dataSource]="dataSource" matSort>
+<table mat-table [dataSource]="dataSource" >
   <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>value</th>
+    <th mat-header-cell *matHeaderCellDef >Value</th>
     <td mat-cell *matCellDef="let reading">
       {{ reading.value | number: "1.2-2" }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="timeStamp">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>timeStamp</th>
+    <th mat-header-cell *matHeaderCellDef >Datetime</th>
     <td mat-cell *matCellDef="let reading">
-      {{ reading.timeStamp?.toMillis() | date: "dd/MM/yyyy H:mm:ss" }}
+      {{ reading.timeStamp.seconds*1000 | date: "dd/MM/yyyy H:mm:ss" }}
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="sensorId">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>sensorId</th>
-    <td mat-cell *matCellDef="let reading">{{ reading.sensorId }}</td>
-  </ng-container>
-
   <ng-container matColumnDef="details">
-    <th mat-header-cell *matHeaderCellDef>Review</th>
-    <td mat-cell *matCellDef="let reading">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let reading" style="text-align: end">
       <button mat-button color="primary" (click)="onEditReading(reading)">
         <mat-icon>edit</mat-icon>
       </button>

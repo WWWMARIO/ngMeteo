@@ -1,5 +1,4 @@
-<!-- <div *ngFor="let sensor of sensors$ | async">{{sensor | json}}</div>
- -->
+
 <ng-container *ngIf="sensors$ | async as sensors">
   <mat-accordion>
     <mat-expansion-panel hideToggle *ngFor="let sensor of sensors">

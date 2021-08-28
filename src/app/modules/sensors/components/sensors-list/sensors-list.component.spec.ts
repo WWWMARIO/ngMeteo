@@ -152,29 +152,29 @@ describe('SensorsListComponent', () => {
     expect(col.textContent).toContain('Lower limit');
   });
 
-  it('column 2 is "lower limit', () => {
+  it('column 2 is "Upper limit"', () => {
     let col = fixture.debugElement.queryAll(By.css('th'))[1].nativeElement
     expect(col.textContent).toContain('Upper limit');
   });
 
 
-  it('column 3 is "lower limit', () => {
+  it('column 3 is "Description', () => {
     let col = fixture.debugElement.queryAll(By.css('th'))[2].nativeElement
     expect(col.textContent).toContain('Description');
   });
 
-  it('column 4 is "lower limit', () => {
+  it('column 4 is "Sensor type', () => {
     let col = fixture.debugElement.queryAll(By.css('th'))[3].nativeElement
     expect(col.textContent).toContain('Sensor type');
   });
 
-  it('column 5 is "lower limit', () => {
+  it('column 5 is "Sensor id', () => {
     let col = fixture.debugElement.queryAll(By.css('th'))[4].nativeElement
     expect(col.textContent).toContain('Sensor id');
   });
 
 
-  it('displays 4 rows when testdata of len 4 is input ', () => {
+  it('displays 4 rows when testdata of len 4 is input', () => {
     component.stations$ = new BehaviorSubject(testStations)
     component.sensorTypes$ = new BehaviorSubject(testSensorTypes)
     component.dataSource.data = testSensors
