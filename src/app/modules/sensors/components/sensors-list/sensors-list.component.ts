@@ -44,9 +44,7 @@ export class SensorsListComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.stationId)
-    // this.stations$ = this.firestore.collection('meteoStation').valueChanges({ idField: 'id' });
     this.stations$ = this.apiStationsService.getMeteoStations();
-    //  = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
     if (this.stationId) {
       this.sensorsSub = this.apiSensorsService.getSensorsForStation(this.stationId).subscribe((response)=>{
@@ -76,7 +74,6 @@ export class SensorsListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
       if (confirmDelete) {
-        // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
         this.apiSensorsService.deleteSensor(sensor.id);
       }
     });

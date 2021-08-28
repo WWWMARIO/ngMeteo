@@ -22,8 +22,6 @@ export class SensorTypesListComponent implements OnInit {
     private apiSensorsService: ApiSensorsService) { }
 
   ngOnInit(): void {
-
-    // this.sensorTypes$ = this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
     this.sensorTypes$ = this.apiSensorsService.getSensorTypes()
   }
 
@@ -54,7 +52,6 @@ export class SensorTypesListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
       if (confirmDelete) {
-        // this.firestore.collection('sensorTypes').doc(sensorType.id).delete();
         this.apiSensorsService.deleteSensorType(sensorType.id);
       }
     });

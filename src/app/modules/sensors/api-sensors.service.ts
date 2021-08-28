@@ -37,8 +37,6 @@ export class ApiSensorsService {
 
 
 
-
-
   getSensorTypes() {
     return this.firestore.collection('sensorTypes').valueChanges({ idField: 'id' });
   }

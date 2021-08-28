@@ -122,7 +122,6 @@ export class EditMeteoStationModalComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(async (confirmDelete: boolean) => {
       if (confirmDelete) {
-        // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
         this.dialogRef.close();
         await this.apiStationsService.deleteMeteoStation(meteoStation.id);
         this.snackBar.open(`Station ${meteoStation.name} deleted`, '', {

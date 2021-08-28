@@ -64,7 +64,6 @@ export class ReadingsListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmDelete: boolean) => {
       if (confirmDelete) {
-        // this.firestore.collection('meteoStation').doc(meteoStation.id).delete();
         this.firestore.collection('readings').doc(reading.id).delete();
       }
     });
