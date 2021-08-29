@@ -1,6 +1,6 @@
 .example-card {
   width:40%;
-  height: 100%
+  // height: 100%
 }
 
 /* .example-header-image {
@@ -9,10 +9,22 @@
 } */
 
 .card-image {
-  height: 50px; width: 50px
+  height: 200px; width: 200px;
+  border-radius: 100%;
 }
 
 
 .card-row {
   justify-content: space-around;  height:40%
+}
+
+
+.datetime {
+  font-size: xx-small
+}
+
+
+
+.value {
+  font-size: x-large
 }
