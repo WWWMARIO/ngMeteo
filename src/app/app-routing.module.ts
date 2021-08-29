@@ -19,6 +19,11 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToWelcome },
     children: [
       {
+        path:'',
+        pathMatch:'full',
+        redirectTo: 'meteo-stations'
+      },
+      {
         path: 'meteo-stations',
         canActivate: [AngularFireAuthGuard],
         data: { authGuardPipe: redirectUnauthorizedToWelcome },
@@ -33,7 +38,7 @@ const routes: Routes = [
         data: { authGuardPipe: redirectUnauthorizedToWelcome },
         loadChildren: () =>
           import('./modules/map/map.module').then((m) => m.MapModule),
-      },
+      }
     ],
   },
   {

@@ -1,18 +1,21 @@
 <h1>Reading</h1>
-<form [formGroup]="readingForm" class="flex-column">
-  <mat-form-field>
-    <mat-label>value</mat-label>
-    <input
-      type="number"
-      matInput
-      formControlName="value"
-      placeholder="lowvalueerLimit"
-    />
-    <mat-error *ngIf="readingForm.controls.value.hasError('required')">
-      Please entervalue
-    </mat-error>
-  </mat-form-field>
-  <!-- <mat-form-field>
+<ng-container *ngIf="readingForm">
+  <form  [formGroup]="readingForm" class="flex-column">
+    <mat-form-field>
+      <mat-label
+        >Value (min: {{ lowerLimit }}, max : {{ upperLimit }})</mat-label
+      >
+      <input
+        type="number"
+        matInput
+        formControlName="value"
+        placeholder="Enter value"
+      />
+      <mat-error *ngIf="readingForm.controls.value.hasError('required')">
+        Please enter value
+      </mat-error>
+    </mat-form-field>
+    <!-- <mat-form-field>
     <mat-label>upperLimit</mat-label>
     <input
       type="number"
@@ -37,7 +40,7 @@
       Please enter description
     </mat-error>
   </mat-form-field> -->
-  <!-- <mat-form-field>
+    <!-- <mat-form-field>
     <mat-label>Sensor</mat-label>
     <mat-select formControlName="sensorId">
       <mat-option
@@ -52,7 +55,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field> -->
-  <!-- <mat-form-field>
+    <!-- <mat-form-field>
     <mat-label>Sensor type</mat-label>
     <mat-select formControlName="sensorTypeId">
       <mat-option
@@ -64,24 +67,25 @@
     </mat-select>
   </mat-form-field> -->
 
-  <button
-    id="updateBtn"
-    *ngIf="data"
-    mat-raised-button
-    (click)="updateReading()"
-    color="primary"
-    [disabled]="readingForm.invalid || loading"
-  >
-    Update reading
-  </button>
-  <button
-    id="createNewBtn"
-    *ngIf="!data"
-    mat-raised-button
-    (click)="newReading()"
-    color="primary"
-    [disabled]="readingForm.invalid || loading"
-  >
-    Create new reading
-  </button>
-</form>
+    <button
+      id="updateBtn"
+      *ngIf="!this.data?.newReadingSensorid && this.data?.sensorId"
+      mat-raised-button
+      (click)="updateReading()"
+      color="primary"
+      [disabled]="readingForm.invalid || loading"
+    >
+      Update reading
+    </button>
+    <button
+      id="createNewBtn"
+      *ngIf="this.data?.newReadingSensorid && !this.data?.sensorId"
+      mat-raised-button
+      (click)="newReading()"
+      color="primary"
+      [disabled]="readingForm.invalid || loading"
+    >
+      Create new reading
+    </button>
+  </form>
+</ng-container>

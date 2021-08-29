@@ -34,7 +34,6 @@ export class ReadingsListComponent implements OnInit {
         this.dataSource.data =  response.filter((reading)=> {
           return reading.sensorId === this.sensorId
         })
-        console.log(this.dataSource.data)
       } else {
         this.dataSource.data = response;
       }

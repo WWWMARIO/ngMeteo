@@ -17,7 +17,8 @@ export class EditSensorModalComponent implements OnInit {
   meteoStations$: Observable<any[]> = this.apiStationsService.getMeteoStations();
   sensorTypes$: Observable<any[]> = this.apiSensorsService.getSensorTypes();
   loading = false;
-  decimalNumberRegex = new RegExp('^[0-9]+$')  // '^[0-9]+$'
+  regexDecimalValidator = Validators.pattern(/^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/)
+
 
 
   constructor(
@@ -32,8 +33,8 @@ export class EditSensorModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.newSensorStationId) {
       this.sensorForm = this.formBuilder.group({
-        upperLimit: ['', [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
-        lowerLimit: ['', [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
+        upperLimit: ['', [Validators.required, this.regexDecimalValidator]],
+        lowerLimit: ['', [Validators.required, this.regexDecimalValidator]],
         description: ['', [Validators.required]],
         sensorTypeId: ['', [Validators.required]],
         stationId: [this.data.newSensorStationId, [Validators.required]],
@@ -41,16 +42,16 @@ export class EditSensorModalComponent implements OnInit {
     }
     else if (this.data) {
       this.sensorForm = this.formBuilder.group({
-        upperLimit: [this.data.upperLimit, [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
-        lowerLimit: [this.data.lowerLimit, [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
+        upperLimit: [this.data.upperLimit, [Validators.required, this.regexDecimalValidator]],
+        lowerLimit: [this.data.lowerLimit, [Validators.required, this.regexDecimalValidator]],
         description: [this.data.description, [Validators.required]],
         sensorTypeId: [this.data.sensorTypeId, [Validators.required]],
         stationId: [this.data.stationId, [Validators.required]],
       });
     } else {
       this.sensorForm = this.formBuilder.group({
-        upperLimit: ['', [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
-        lowerLimit: ['', [Validators.required, Validators.pattern(this.decimalNumberRegex)]],
+        upperLimit: ['', [Validators.required, this.regexDecimalValidator]],
+        lowerLimit: ['', [Validators.required, this.regexDecimalValidator]],
         description: ['', [Validators.required]],
         sensorTypeId: ['', [Validators.required]],
         stationId: ['', [Validators.required]],

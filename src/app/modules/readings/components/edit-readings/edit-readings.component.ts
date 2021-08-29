@@ -19,11 +19,14 @@ export class Reading {
   styleUrls: ['./edit-readings.component.scss'],
 })
 export class EditReadingsComponent implements OnInit {
-  readingForm: FormGroup;
-  sensors$: Observable<any[]>;
-  sensorTypes$: Observable<any[]>;
-  stations$: Observable<any[]>;
+  readingForm: FormGroup
+  upperLimit;
+  lowerLimit
+  // sensors$: Observable<any[]>;
+  // sensorTypes$: Observable<any[]>;
+  // stations$: Observable<any[]>;
   loading = false;
+
   regexDecimalValidator = Validators.pattern(
     /^[+-]?([0-9]+\.?[0-9]*|\.[0-9]+)$/
   );
@@ -39,20 +42,39 @@ export class EditReadingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.sensors$ = this.apiSensorsService.getSensors();
-    this.sensorTypes$ = this.apiSensorsService.getSensorTypes();
-    this.stations$ = this.apiStationsService.getMeteoStations();
+    // this.sensors$ = this.apiSensorsService.getSensors();
+    // this.sensorTypes$ = this.apiSensorsService.getSensorTypes();
+    // this.stations$ = this.apiStationsService.getMeteoStations();
     // console.log(this.data)
+    const parentSensorId = this.data.newReadingSensorid?this.data.newReadingSensorid:this.data.sensorId;
+    this.firestore.collection('meteoStationSensor').doc(parentSensorId).ref.get().then( (parentSensor) => {
+      if (parentSensor.exists) {
+        this.lowerLimit = (parentSensor.data() as any ).lowerLimit
+        this.upperLimit = (parentSensor.data() as any ).upperLimit
+        this.createForm( this.lowerLimit, this.upperLimit );
+      } else {
+        this.createForm(-999999999 , 999999999 );
+        console.log("There is no document!");
+      }
+    }).catch(function (error) {
+      this.createForm(-999999999 , 999999999 );
+      console.log("There was an error getting your document:", error);
+    });
+
+  }
+
+
+  createForm(min,max) {
     if (this.data.newReadingSensorid) {
       this.readingForm = this.formBuilder.group({
-        value: ['', [Validators.required, this.regexDecimalValidator]],
+        value: ['', [Validators.required, this.regexDecimalValidator, Validators.min(min), Validators.max(max) ]],
         sensorId: [this.data.newReadingSensorid, [Validators.required]],
       });
     } else if (this.data) {
       this.readingForm = this.formBuilder.group({
         value: [
           this.data.value,
-          [Validators.required, this.regexDecimalValidator],
+          [Validators.required, this.regexDecimalValidator, Validators.min(min), Validators.max(max)],
         ],
         sensorId: [this.data.sensorId, [Validators.required]],
       });
@@ -64,8 +86,9 @@ export class EditReadingsComponent implements OnInit {
     }
   }
 
+
   async newReading() {
-    // console.log(this.readingForm)
+    console.log(this.readingForm)
     if (this.readingForm.valid) {
       console.log(this.readingForm.value);
       const newReading = {
@@ -81,12 +104,13 @@ export class EditReadingsComponent implements OnInit {
         this.snackBar.open('Error creating new reading', '', {
           duration: 2000,
         });
+        this.loading = false;
       }
-    } /* else {
-      this.snackBar.open('Please input valid reading information', '', {
-        duration: 2000
-      });
-    } */
+    } // else {
+      // this.snackBar.open('Please input valid reading information', '', {
+      //   duration: 2000
+      // });
+      // }
   }
 
   async updateReading() {
