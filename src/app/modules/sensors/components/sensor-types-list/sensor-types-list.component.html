@@ -12,8 +12,8 @@
         (removed)="onRemove(sensorType)"
         (click)="editSensorType(sensorType)"
       >
-        {{ sensorType.type }}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    <span>{{ sensorType.type }}</span>
+        <mat-icon id="{{sensorType.type}}" matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
     </ng-container>
   </mat-chip-list>

@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 
 import { StationOverviewComponent } from './station-overview.component';
 
-fdescribe('StationOverviewComponent', () => {
+describe('StationOverviewComponent', () => {
   let component: StationOverviewComponent;
   let fixture: ComponentFixture<StationOverviewComponent>;
 

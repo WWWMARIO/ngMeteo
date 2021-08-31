@@ -34,10 +34,10 @@
   <ng-container matColumnDef="review">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let sensor" style="text-align: end">
-      <button mat-button color="primary" (click)="viewSensorDetails(sensor)">
+      <button id="{{(sensor?.sensorTypeId | getSensorType: (sensorTypes$ | async))?.type}}-edit" mat-button color="primary" (click)="viewSensorDetails(sensor)">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-button color="warn" (click)="deleteSensor(sensor)">
+      <button id="{{(sensor?.sensorTypeId | getSensorType: (sensorTypes$ | async))?.type}}-delete" mat-button color="warn" (click)="deleteSensor(sensor)">
         <mat-icon>delete_outline</mat-icon>
       </button>
     </td>

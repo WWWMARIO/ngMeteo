@@ -34,7 +34,7 @@ describe('SensorsComponent', () => {
   });
 
   it('should contain NEW SENSOR button', () => {
-    let btn = fixture.debugElement.query(By.css('#newBtn'))
+    let btn = fixture.debugElement.query(By.css('#newSensorBtn'))
     expect(btn).toBeTruthy();
   });
 

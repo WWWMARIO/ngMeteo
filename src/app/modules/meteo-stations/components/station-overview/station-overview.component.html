@@ -49,6 +49,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let sensor of sensors$ | async" style="height: 60px">
+            <ng-container *ngIf="readings | getAverageReadingForSensor: sensor.id">
             <td>{{ sensor.description }}</td>
             <td>
               <div class="flex-column">
@@ -115,13 +116,14 @@
                 >
                 <span class="value">
                   {{
-                    (readings | getLatestReadingForSensor: sensor.id).value
+                    (readings | getLatestReadingForSensor: sensor.id)?.value
                       | number: "1.2-2"
                   }}
                   {{ (sensor.sensorTypeId | getSensorType: sensorTypes)?.unit }}
                 </span>
               </div>
             </td>
+          </ng-container>
           </tr>
 
         </tbody>
