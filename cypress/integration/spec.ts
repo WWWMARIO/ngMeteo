@@ -19,10 +19,29 @@ const page = {
   },
 };
 
-describe('Log in', () => {
-  it('Logs in ', () => {
-    page.login();
-    page.routeToList();
+describe('Logs in with correct user e-mail and password', () => {
+  it('Logs in with correct user e-mail and password ', () => {
+    cy.visit('/welcome');
+    cy.contains('International Education Program Veleri-OI IoT School');
+    cy.contains('Case study of the IoT project "Cov protect System');
+    cy.contains('Login').click();
+    cy.get('input[formControlName="email"]').type('mario@mario.mario');
+    cy.get('input[formControlName="password"]').type('mariomario');
+    cy.get('button').contains('Log in').click();
+    cy.url().should('include', '/map');
+  });
+});
+
+describe('Should not log in with incorrect user e-mail and password', () => {
+  it('Should not log in with incorrect user e-mail and password', () => {
+    cy.visit('/welcome');
+    cy.contains('International Education Program Veleri-OI IoT School');
+    cy.contains('Case study of the IoT project "Cov protect System');
+    cy.contains('Login').click();
+    cy.get('input[formControlName="email"]').type('mario@mario.mario');
+    cy.get('input[formControlName="password"]').type('xxxxxxx');
+    cy.get('button').contains('Log in').click();
+    cy.url().should('include', '/welcome');
   });
 });
 
@@ -44,7 +63,6 @@ describe('Create new station', () => {
     cy.wait(4000);
     cy.get('h3').contains('Cypress Test Station 1').should('be.visible');
     cy.get('p').contains('Cy Test Station 1 desc').should('be.visible');
-
   });
 });
 describe('Edit station', () => {
@@ -68,7 +86,7 @@ describe('Create new sensor type', () => {
     page.login();
     page.routeToList();
     cy.get('h3').contains('Cypress Test Station 1').click();
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get('button').contains('Sensors').click();
     cy.get('mat-chip').contains('add').click();
     cy.get('input[formControlName="type"]').type('Cy-sensor-type');
@@ -84,7 +102,7 @@ describe('Add new sensor', () => {
     page.login();
     page.routeToList();
     cy.get('h3').contains('Cypress Test Station 1').click();
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get('button').contains('Sensors').click();
     cy.get('#newSensorBtn').click();
     cy.get('input[formControlName="lowerLimit"]').type('0');
@@ -118,13 +136,12 @@ describe('Edit sensor', () => {
     cy.get('td').contains('Sensor desc-edit').should('be.visible');
   });
 });
-
 describe('Edit sensor type', () => {
   it('Edit sensor type', () => {
     page.login();
     page.routeToList();
     cy.get('h3').contains('Cypress Test Station 1').click();
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get('button').contains('Sensors').click();
     cy.wait(3000);
     cy.get('span').contains('Cy-sensor-type').click();
@@ -140,7 +157,7 @@ describe('Add new reading', () => {
     page.login();
     page.routeToList();
     cy.get('h3').contains('Cypress Test Station 1').click();
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get('button').contains('Readings').click();
     cy.contains('Sensor desc').click();
     cy.get('#newReadingBtn').click();
@@ -156,10 +173,10 @@ describe('Edit reading', () => {
     page.login();
     page.routeToList();
     cy.get('h3').contains('Cypress Test Station 1').click();
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get('button').contains('Readings').click();
     cy.contains('Sensor desc').click();
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get('#edit').click();
     cy.get('input[formControlName="value"]').click().clear().type('77.77');
     cy.get('button').contains('Update reading').click();
@@ -192,7 +209,7 @@ describe('Delete sensor ', () => {
     cy.get('#Cy-sensor-type-delete').click();
     cy.get('button').contains('Delete').click();
     cy.wait(3000);
-    cy.get('td').contains('Cy-sensor-type').should('not.be.visible');
+    cy.get('td').should('not.exist');
   });
 });
 

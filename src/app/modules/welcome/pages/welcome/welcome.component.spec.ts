@@ -1,10 +1,8 @@
-import { AgmCoreModule } from "@agm/core";
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { AngularFireModule } from "@angular/fire";
 import { By } from "@angular/platform-browser";
 import { SharedModule } from "src/app/modules/shared/shared.module";
 import { environment } from "src/environments/environment";
-
 import { WelcomeComponent } from './welcome.component';
 
 describe('WelcomeComponent', () => {
@@ -40,8 +38,8 @@ describe('WelcomeComponent', () => {
   });
 
   it('should contain login button', () => {
-    let btn = fixture.debugElement.query(By.css('#loginBtn'))
-    expect(btn).toBeTruthy();
+    let loginButton = fixture.debugElement.query(By.css('#loginBtn'))
+    expect(loginButton).toBeTruthy();
   });
 
   it('should contain header', () => {

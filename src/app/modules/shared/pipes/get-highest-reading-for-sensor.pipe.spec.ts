@@ -400,6 +400,34 @@ describe('GetHighestReadingForSensorPipe', () => {
     },
   ];
 
+  const data = [
+    {
+      sensorId: 'G4sLf9DOaxBOmjGLmDU8',
+      value: 20,
+      timeStamp: {seconds: 1629832280,nanoseconds: 0, },
+      id: '0DDClHvHFuNfMPqZxnar',
+    },
+    {
+      value: 30,
+      sensorId: 'J2WEQArcfOdR67NrhcVE',
+      timeStamp: {
+        seconds: 1629877745,
+        nanoseconds: 0,
+      },
+      id: '3sDlhHz6SAhVhefvBSV2',
+    },
+    {
+      value: 28,
+      sensorId: 'G4sLf9DOaxBOmjGLmDU8',
+      timeStamp: {
+        seconds: 1629877745,
+        nanoseconds: 0,
+      },
+      id: '3sDlhHz6SAhVhefvBSV2',
+    },
+
+  ];
+
   const pipe = new GetHighestReadingForSensorPipe();
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
@@ -459,5 +487,21 @@ describe('GetHighestReadingForSensorPipe', () => {
 
   it('fetch null strings when no sensor id  provided', () => {
     expect(pipe.transform(testData, '')).toBe(null);
+  });
+
+  it('fetches highest reading for sensor id G4sLf9DOaxBOmjGLmDU8', () => {
+    expect(pipe.transform(data, 'G4sLf9DOaxBOmjGLmDU8')).toEqual( {
+      value: 28,
+      sensorId: 'G4sLf9DOaxBOmjGLmDU8',
+      timeStamp: {
+        seconds: 1629877745,
+        nanoseconds: 0,
+      },
+      id: '3sDlhHz6SAhVhefvBSV2',
+    },);
+  });
+
+  it('finds no data for sensor id j6jMOYDm3QJLkHrIrSLw', () => {
+    expect(pipe.transform(data, 'j6jMOYDm3QJLkHrIrSLw')).toEqual(undefined);
   });
 });
