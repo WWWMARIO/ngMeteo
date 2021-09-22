@@ -19,7 +19,7 @@ const page = {
   },
 };
 
-describe('Logs in with correct user e-mail and password', () => {
+ describe('Logs in with correct user e-mail and password', () => {
   it('Logs in with correct user e-mail and password ', () => {
     cy.visit('/welcome');
     cy.contains('International Education Program Veleri-OI IoT School');
@@ -121,7 +121,7 @@ describe('Add new sensor', () => {
   });
 });
 
-describe('Edit sensor', () => {
+ describe('Edit sensor', () => {
   it('Edit sensor', () => {
     page.login();
     page.routeToList();
@@ -152,7 +152,7 @@ describe('Edit sensor type', () => {
   });
 });
 
-describe('Add new reading', () => {
+ describe('Add new reading', () => {
   it('Add new reading', () => {
     page.login();
     page.routeToList();
@@ -196,10 +196,11 @@ describe('Delete reading', () => {
     cy.wait(3000);
     cy.get('#delete').click();
     cy.get('button').contains('Delete').click();
+    cy.get('td').should('not.exist');
   });
 });
 
-describe('Delete sensor ', () => {
+ describe('Delete sensor ', () => {
   it('Deletes sensor', () => {
     page.login();
     page.routeToList();
@@ -238,4 +239,16 @@ describe('Delete station', () => {
     cy.wait(3000);
     cy.get('h3').contains('Cypress Test Station 1').should('not.exist');
   });
+});
+
+
+
+
+describe('Logs out', () => {
+  it('Logs out', () => {
+    page.login();
+    cy.get('#moreOptionsBtn').click();
+    cy.get('span').contains('Log out').click();
+    cy.url().should('include', '/welcome');
+    });
 });

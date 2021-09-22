@@ -33,7 +33,7 @@ export class ReadingsListComponent implements OnInit {
       if (this.sensorId) {
         this.dataSource.data =  response.filter((reading)=> {
           return reading.sensorId === this.sensorId
-        })
+        }).sort((a, b) => {return b.timeStamp.seconds - a.timeStamp.seconds; })
       } else {
         this.dataSource.data = response;
       }

@@ -142,7 +142,7 @@ describe('EditReadingsComponent', () => {
     const sensorId = component.readingForm.controls.sensorId;
     sensorId.setValue('31wLXK7Bg59pXvVikvgO');
     fixture.detectChanges();
-    expect(component.readingForm.invalid).toBeFalsy();
+    expect(component.readingForm.valid).toBeTruthy();
   });
 
   it('Reading form should be invalid when inputing value below minimum', () => {
@@ -163,5 +163,56 @@ describe('EditReadingsComponent', () => {
     sensorId.setValue('31wLXK7Bg59pXvVikvgO');
     fixture.detectChanges();
     expect(component.readingForm.invalid).toBeTruthy();
+  });
+
+
+  it('Reading form should be invalid when inputing string value', () => {
+    component.createForm(0, 100);
+    const value = component.readingForm.controls.value;
+    value.setValue('reading');
+    const sensorId = component.readingForm.controls.sensorId;
+    sensorId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.readingForm.invalid).toBeTruthy();
+  });
+
+  it('Reading form should be invalid when inputing no value', () => {
+    component.createForm(0, 100);
+    const value = component.readingForm.controls.value;
+    value.setValue('');
+    const sensorId = component.readingForm.controls.sensorId;
+    sensorId.setValue('31wLXK7Bg59pXvVikvgO');
+    fixture.detectChanges();
+    expect(component.readingForm.invalid).toBeTruthy();
+  });
+
+
+
+  it('CREATE NEW button should be shown when not inputing reading data', () => {
+    component.createForm(0, 100);
+    component.data.newReadingSensorid = '31wLXK7Bg59pXvVikvgO';
+    const value = component.readingForm.controls.value;
+    value.setValue('');
+    const sensorId = component.readingForm.controls.sensorId;
+    sensorId.setValue(component.data.newReadingSensorid);
+    fixture.detectChanges();
+    let createNewReadingButton = fixture.debugElement.query(By.css('#createNewBtn'));
+    expect(createNewReadingButton).toBeTruthy();
+  });
+
+  it('UPDATE button should be shown when inputing reading data', () => {
+    component.createForm(0, 100);
+    component.data = {
+      id: '31wLXK7Bg59pXvVikvgO',
+      sensorId: '31wLXK7Bg59pXvVikvgO',
+      value: 25,
+    };
+    const value = component.readingForm.controls.value;
+    value.setValue(component.data.value);
+    const sensorId = component.readingForm.controls.sensorId;
+    sensorId.setValue(component.data.sensorId);
+    fixture.detectChanges();
+    let updateReadingButton = fixture.debugElement.query(By.css('#updateBtn'));
+    expect(updateReadingButton).toBeTruthy();
   });
 });
